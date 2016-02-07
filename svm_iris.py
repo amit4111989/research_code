@@ -19,7 +19,6 @@ except:
 
 
 dtype = 'float32'
-n_examples = 500
 n_classes = 3         # -- denoted L in the math expressions
 img_shape = (28, 28)
 
@@ -29,6 +28,8 @@ img_shape = (28, 28)
 iris = datasets.load_iris()
 x = iris.data[:, :2]  # we only take the first two features.
 y = iris.target
+n_examples = len(x)
+
 
 def ova_svm_prediction(W, b, x):
     return np.argmax(np.dot(x, W) + b, axis=1)
@@ -71,15 +72,15 @@ t0 = time.time()
 online_batch_size = 1
 n_online_epochs = 1
 n_batches = n_examples / online_batch_size
-W, b = autodiff.fmin_sgd(ova_svm_cost, (W, b),
-            streams={
-                'x': x.reshape((n_batches, online_batch_size, x.shape[1])),
-                'y1': y1.reshape((n_batches, online_batch_size, y1.shape[1]))},
-            loops=n_online_epochs,
-            step_size=0.001,
-            print_interval=1000,
-            )
-print 'SGD took %.2f seconds' % (time.time() - t0)
+#W, b = autodiff.fmin_sgd(ova_svm_cost, (W, b),
+#            streams={
+#                'x': x.reshape((n_batches, online_batch_size, x.shape[1])),
+#                'y1': y1.reshape((n_batches, online_batch_size, y1.shape[1]))},
+#           	 loops=n_online_epochs,
+#		step_size=0.01,
+#		print_interval=n_examples,
+#            )
+#print 'SGD took %.2f seconds' % (time.time() - t0)
 #show_filters(W.T, img_shape, (2, 5))
 
 # -- L-BFGS optimization of our SVM cost.
@@ -98,7 +99,7 @@ train_predictions = ova_svm_prediction(W, b, x)
 train_errors = y != train_predictions
 print 'Current train set error rate', np.mean(train_errors)
 
-test_predictions = ova_svm_prediction(W, b, iris.data)
+test_predictions = ova_svm_prediction(W, b, iris.data[:,:2])
 test_errors = iris.target != test_predictions
 print 'Current test set error rate', np.mean(test_errors)
 
