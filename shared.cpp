@@ -42,6 +42,7 @@ static bool todays_date(const char *name, const ArgumentList &arguments,
     EvalState &state, Value  &result);
 static bool doublenum(const char *name, const ArgumentList &arguments,
     EvalState &state, Value  &result);
+static bool is_present(char *pathname) 
 
 /***************************************************************************
  *
@@ -60,6 +61,7 @@ static ClassAdFunctionMapping functions[] =
     { "todays_date", (void *) todays_date, 0 },
 	{ "double",      (void *) doublenum,   0 },
 	{ "triple",      (void *) doublenum,   0 },
+	{ "is_present",      (void *) is_present,   0 },
     { "",            NULL,                 0 }
 };
 
@@ -198,3 +200,23 @@ static bool doublenum(
 
 	return eval_successful;
 }
+
+/****************************************************************************
+ *
+ * Function: is_present
+ * Purpose:  This is a custom function check if the path is present in machine
+ * Returns:  It returns true if the function can be evaluated successfully,
+ *           and false otherwise.
+ *
+ ****************************************************************************/
+
+ static bool is_present(char *pathname) {
+ 	struct stat sb;
+
+	if (stat(pathname, &sb) == 0 && S_ISDIR(sb.st_mode))
+	{
+	    return true;
+	}
+
+	return false;
+ }
