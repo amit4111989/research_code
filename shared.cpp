@@ -42,7 +42,7 @@ static bool todays_date(const char *name, const ArgumentList &arguments,
     EvalState &state, Value  &result);
 static bool doublenum(const char *name, const ArgumentList &arguments,
     EvalState &state, Value  &result);
-static bool is_present(char *pathname) 
+static bool is_present(char *pathname);
 
 /***************************************************************************
  *

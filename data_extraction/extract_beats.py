@@ -15,11 +15,17 @@
 #
 #                 ex : rdann -r 102 -a atr >> 102_atr.txt
 #
-# Example Usage : python extract_beats.py 102 V
+# Example Usage : (to extract x no. of beat labels)
+#                 python extract_beats.py 102 1 V 4
+#                 (to extract first 5 min data)
+#                 python extract_beats.py 102 2
+#                 (to extract last 25 min data)
+#                 python extract_beats.py 102 3
 # Dataset URL :   https://www.physionet.org/physiobank/database/mitdb/
 # Date :          23rd Nov 2015
 #####
 
+import scipy
 import numpy
 import scipy.signal
 import sys
@@ -44,6 +50,18 @@ def clean_signal(
    return ecg_band
 
 
+def delete_empty_vals(ecg):
+   index_to_delete = []
+
+   for e in ecg:
+      if not e:
+         index_to_delete.append(ecg.index(e))
+
+   for i in index_to_delete:
+      del ecg[i]
+
+   return ecg
+
 def extract_signal(filename):
 
    f = open('data/'+filename+'.csv','r')
@@ -53,24 +71,89 @@ def extract_signal(filename):
    output = []
    for i in data:
       i = i.split(',')
-      print i[1]
       if len(i)>1:
          temp = float(i[1])
          temp = (temp-1024.00)/200.00
          output.append(temp)
    return output
 
-def extract_labels(filename,beat_class):
+def extract_labels(filename,job, beat_class=None, no_of_beats=None):
 
    f = open('data/'+filename+'_atr.txt','r')
    data = f.read()
    f.close()
    data = data.split('\n')
    output = []
-   for i in data:
-      arr = i.split()
-      if arr[2]==beat_class:
-         output.append([int(arr[1]),arr[2]])
+   job_3_output=0
+   if job==1:
+      beat_class = get_beat_class(beat_class)
+   for i in xrange(len(data)):
+      if data[i]:
+         if not i==0 and not i==len(data)-1 and data[i] and data[i+1]: #skip first and last beats
+            arr = data[i].split()
+            arr2 = data[i-1].split()
+            arr3 = data[i+1].split()
+            # calculate pre-rr interval
+            if(arr[0].split(':')[0]>arr2[0].split(':')[0]):
+               pre_rr = float(arr[0].split(':')[1])+60.00 - float(arr2[0].split(':')[1])
+            else:
+               pre_rr = float(arr[0].split(':')[1]) - float(arr2[0].split(':')[1])
+            # calculate post-rr interval
+            if(arr3[0].split(':')[0]>arr[0].split(':')[0]):
+               post_rr = float(arr3[0].split(':')[1])+60.00 - float(arr[0].split(':')[1])
+            else:
+               post_rr = float(arr3[0].split(':')[1]) - float(arr[0].split(':')[1])
+            # calculate avg-rr interval
+            avg_interval = (pre_rr+post_rr)/2.00
+            avg_rr = 60.00/avg_interval
+            # calculate local-rr interval
+            local_rr = 10.00/avg_interval
+            # get beat class 0 , 1 , 2 , 3 , 4 depending on label
+            beat = get_beat_class(arr[2])
+            # extract particular beats if job==1
+            if job==1:
+               if len(output)>=int(no_of_beats):
+                  break
+               elif beat==beat_class:
+                  output.append([int(arr[1]),beat,pre_rr,post_rr,avg_rr,local_rr])
+               else:
+                  pass
+            # extract first 5 min of beats if job==2
+            if job==2:
+               time = arr[0].split(':')
+               if int(time[0])<5:
+                     output.append([int(arr[1]),beat,pre_rr,post_rr,avg_rr,local_rr])
+               else:
+                  break
+            # extract last 25 min of beats if job==3
+            if job==3:
+               time = arr[0].split(':')
+               if int(time[0])>=5:
+                     output.append([int(arr[1]),beat,pre_rr,post_rr,avg_rr,local_rr])
+                     
+   return output
+
+def get_beat_class(beat):
+
+   # MIT-BIH classes mapped to AAMI classes
+
+   N = ['N', 'L', 'R', 'e', 'j']
+   V = ['V', 'E']
+   S = ['A', 'a', 'J', 'S']
+   F = ['F']
+   Q = ['/', 'Q', 'f']
+
+   if beat in V:
+      output = 1
+   elif beat in S:
+      output = 2
+   elif beat in F:
+      output = 3
+   elif beat in Q:
+      output = 4
+   else:
+      output = 0
+
    return output
 
 def extract_features(ecg,beat_index):
@@ -83,46 +166,81 @@ def extract_features(ecg,beat_index):
 
    #200 samples after rpeak
    for i in xrange(201):
-      output.append(ecg[beat_index+i])
+      if not (beat_index+i) == len(ecg):
+         output.append(ecg[beat_index+i])
+      else:
+         return False
 
    return output
 
 if __name__ == '__main__':
 
    filename = sys.argv[1]
-   beat_class = sys.argv[2]
+   job = int(sys.argv[2])
+   if job==1:
+      beat_class = sys.argv[3]
+      no_of_samples = sys.argv[4]
+
 
    #remove gain and baseline from .csv and extract lead II signals
 
    ecg = extract_signal(filename)
-   ecg = numpy.loadtext(ecg)
+
+   # Take care of empty values
+   ecg = delete_empty_vals(ecg)
+
+   ecg = numpy.loadtxt(ecg)
 
    #clean noise from signal data
 
-   ecg = clean_signal(ecg)
+   #ecg = clean_signal(ecg)
 
    #extract r-peaks and labels from annotation file for desired beats
 
-   label = extract_labels(filename,beat_class)
+   if job==1:
+      label = extract_labels(filename,job, beat_class, no_of_samples)
+      print '...extracting complete'
+   else:
+      label = extract_labels(filename,job)
+      print '...extracting complete'
 
    # make feature array of samples for desired beats
    samples = []
 
-   for sample in xrange(ecg):
+   print 'Making Features...'
+   for sample in xrange(len(ecg)):
       for peaks in label:
          if sample==peaks[0]:
             features = extract_features(ecg,sample)
-            samples.append(features)
-            samples.append(peaks[1])
+            if features:
+               features.append(peaks[2])
+               features.append(peaks[3])
+               features.append(peaks[4])
+               features.append(peaks[5])
+               features.append(peaks[1])
+               samples.append(features)
+            else:
+               print 'rpeak at beat', sample, 'skipped'
 
    # write samples to a file
+   #
+   print '...Writing Data...'
+   if job==1:
+      outfile = open('classifier_data/'+filename+'_'+beat_class+'.csv', 'w+')
+   elif job==2:
+      outfile = open('classifier_data/'+filename+'_train'+'.csv', 'w+')
+   else:
+      outfile = open('classifier_data/'+filename+'_test'+'.csv', 'w+')
 
-   outfile = open(filename+'_'+beat_class+'.csv', 'w+')
-
+   print '...Almost Done...'
    for sample in samples:
-      sample = list(itertools.chain(*sample))
-      outfile.write(str(sample.split(',')))
-      outfile.write('\n')
+
+      for val in sample:
+         if len(sample)==sample.index(val)+1 and not sample.index(val)+1==len(samples):
+            outfile.write(str(val)+'\n')
+         else:
+            outfile.write(str(val)+',')
+
 
    outfile.close()
 
