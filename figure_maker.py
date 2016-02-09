@@ -8,8 +8,8 @@
 import matplotlib.pyplot as plt 
 import numpy as np 
 
-file1 = open('classifier_data/105_V.csv','r')
-#file1 = open('classifier_data_nobase/105_V.csv','r')
+#file1 = open('data_extraction/classifier_data/105_V.csv','r')
+file1 = open('data_extraction/classifier_data_nobase/105_V.csv','r')
 
 file1 = file1.read().split('\n')
 
@@ -18,13 +18,12 @@ x = []
 for i in file1:
 	i = i.split(',')
 	if len(i)>0:
-		x.append(float(i[:-5]))
+		j = [float(val) for val in i[:-5]]
+		x.append(j)
 	else:
 		del i
-
-file1.close()
 
 plt.plot(x[0])
 plt.plot(x[1])
 
-plt.savefig('fig1.png')
+plt.savefig('figures/fig1.png')
