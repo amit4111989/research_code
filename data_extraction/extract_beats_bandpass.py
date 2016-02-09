@@ -193,7 +193,7 @@ if __name__ == '__main__':
 
    #clean noise from signal data
 
-   #ecg = clean_signal(ecg)
+   ecg = clean_signal(ecg)
 
    #extract r-peaks and labels from annotation file for desired beats
 
@@ -226,7 +226,7 @@ if __name__ == '__main__':
    #
    print '...Writing Data...'
    if job==1:
-      outfile = open('classifier_data_nobase/'+filename+'_'+beat_class+'.csv', 'w+')
+      outfile = open('classifier_data/'+filename+'_'+beat_class+'.csv', 'w+')
    elif job==2:
       outfile = open('classifier_data/'+filename+'_train'+'.csv', 'w+')
    else:
