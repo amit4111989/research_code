@@ -25,20 +25,22 @@ colors = [(0.0, 0.0, 0.0),(0.0, 0.0, 1.0),(0.75, 0, 0.75),(1.0, 0.0, 0.0),(0.75,
 x = []
 
 for subdir, dirs, files in os.walk('data_extraction/classifier_data'):
+	count=0
 	for file in files:
 		with open('data_extraction/classifier_data/'+file,'r') as f:
 			pay = f.read().split('\n')
 			beats_arr = []
-			plt.figure(0)
+			plt.figure(count)
 			for lines in pay:
 				line = lines.split(',')
 				if len(line)>1:
-					beats = [float(val) for val in line[:-5]]
+					beats = [float(val) for val in line[:-5]]	
 					plt.plot(beats,color=colors[1])
 					beats_arr.append(beats)
 				else:
 					del line
 			plt.savefig(file[:-4]+'.png')
+	count+=1
 
 # for i in file1:
 #   i = i.split(',')
