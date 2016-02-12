@@ -7,7 +7,7 @@
 #####
 import matplotlib.pyplot as plt
 import numpy as np
-
+import os
 
 
 file1 = open('data_extraction/classifier_data/105_V.csv','r')
@@ -26,7 +26,7 @@ x = []
 
 for subdir, dirs, files in os.walk('data_extraction/classifier_data'):
 	for file in files:
-		with open(file,'r') as f:
+		with open('data_extraction/classifier_data/'+file,'r') as f:
 			pay = f.read().split('\n')
 			beats_arr = []
 			plt.figure(0)
@@ -38,7 +38,7 @@ for subdir, dirs, files in os.walk('data_extraction/classifier_data'):
 					beats_arr.append(beats)
 				else:
 					del line
-			plt.savefig('figures/all_V/'+file[:-4]+'.png')
+			plt.savefig(file[:-4]+'.png')
 
 # for i in file1:
 #   i = i.split(',')
