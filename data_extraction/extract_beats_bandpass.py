@@ -73,7 +73,7 @@ def extract_signal(filename):
       i = i.split(',')
       if len(i)>1:
          temp = float(i[1])
-         temp = (temp-1024.00)/200.00
+         temp = (temp)/2047.00
          output.append(temp)
    return output
 

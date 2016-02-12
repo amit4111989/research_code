@@ -10,11 +10,11 @@ import numpy as np
 import os
 
 
-file1 = open('data_extraction/classifier_data/105_V.csv','r')
+#file1 = open('data_extraction/classifier_data/105_V.csv','r')
 #file1 = open('current_benchmarking/train_set.csv','r')
 #file1 = open('data_extraction/classifier_data_nobase/105_V.csv','r')
 
-file1 = file1.read().split('\n')
+#file1 = file1.read().split('\n')
 
 labels = {0:[],1:[],2:[],3:[],4:[]}
 
