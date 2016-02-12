@@ -218,12 +218,9 @@ class SdA(object):
         '''
 
         (train_set_x, train_set_y) = datasets[0]
-        #(valid_set_x, valid_set_y) = datasets[1]
         (test_set_x, test_set_y) = datasets[2]
 
         # compute number of minibatches for training, validation and testing
-        #n_valid_batches = valid_set_x.get_value(borrow=True).shape[0]
-        #n_valid_batches /= batch_size
         n_test_batches = test_set_x.get_value(borrow=True).shape[0]
         n_test_batches /= batch_size
 
@@ -267,34 +264,16 @@ class SdA(object):
             name='test'
         )
 
-        valid_score_i = theano.function(
-            [index],
-            self.errors,
-            givens={
-                self.x: valid_set_x[
-                    index * batch_size: (index + 1) * batch_size
-                ],
-                self.y: valid_set_y[
-                    index * batch_size: (index + 1) * batch_size
-                ]
-            },
-            name='valid'
-        )
-
-        # Create a function that scans the entire validation set
-        def valid_score():
-            return [valid_score_i(i) for i in xrange(n_valid_batches)]
-
         # Create a function that scans the entire test set
         def test_score():
             return [test_score_i(i) for i in xrange(n_test_batches)]
 
-        return train_fn, valid_score, test_score
+        return train_fn,test_score
 
 
-def test_SdA(finetune_lr=0.1, pretraining_epochs=15,
-             pretrain_lr=0.001, training_epochs=1000,
-             dataset='mnist.pkl.gz', batch_size=1):
+def test_SdA(nins,nouts,hidden_layer_sizes,trainfile,testfile,corruption_levels,
+             finetune_lr=0.1, pretraining_epochs=15,pretrain_lr=0.001, training_epochs=1000,
+            batch_size=1):
     """
     Demonstrates how to train and test a stochastic denoising autoencoder.
 
@@ -318,11 +297,10 @@ def test_SdA(finetune_lr=0.1, pretraining_epochs=15,
 
     """
 
-    datasets = load_data(dataset)
+    datasets = load_data(trainfile,testfile)
 
     train_set_x, train_set_y = datasets[0]
-    #valid_set_x, valid_set_y = datasets[1]
-    test_set_x, test_set_y = datasets[2]
+    test_set_x, test_set_y = datasets[1]
 
     # compute number of minibatches for training, validation and testing
     n_train_batches = train_set_x.get_value(borrow=True).shape[0]
@@ -335,9 +313,9 @@ def test_SdA(finetune_lr=0.1, pretraining_epochs=15,
     # construct the stacked denoising autoencoder class
     sda = SdA(
         numpy_rng=numpy_rng,
-        n_ins=28 * 28,
-        hidden_layers_sizes=[1000, 1000, 1000],
-        n_outs=10
+        n_ins=nins,
+        hidden_layers_sizes=hidden_layer_sizes,
+        n_outs=nouts
     )
     # end-snippet-3 start-snippet-4
     #########################
@@ -350,7 +328,7 @@ def test_SdA(finetune_lr=0.1, pretraining_epochs=15,
     print '... pre-training the model'
     start_time = timeit.default_timer()
     ## Pre-train layer-wise
-    corruption_levels = [.1, .2, .3]
+    corruption_levels = corruption_levels
     for i in xrange(sda.n_layers):
         # go through pretraining epochs
         for epoch in xrange(pretraining_epochs):
@@ -375,79 +353,41 @@ def test_SdA(finetune_lr=0.1, pretraining_epochs=15,
 
     # get the training, validation and testing function for the model
     print '... getting the finetuning functions'
-    train_fn, validate_model, test_model = sda.build_finetune_functions(
+    train_fn, test_model = sda.build_finetune_functions(
         datasets=datasets,
         batch_size=batch_size,
         learning_rate=finetune_lr
     )
 
     print '... finetunning the model'
-    # early-stopping parameters
-    patience = 10 * n_train_batches  # look as this many examples regardless
-    patience_increase = 2.  # wait this much longer when a new best is
-                            # found
-    improvement_threshold = 0.995  # a relative improvement of this much is
-                                   # considered significant
-    validation_frequency = min(n_train_batches, patience / 2)
-                                  # go through this many
-                                  # minibatche before checking the network
-                                  # on the validation set; in this case we
-                                  # check every epoch
-
-    best_validation_loss = numpy.inf
+    # early-
     test_score = 0.
     start_time = timeit.default_timer()
 
     done_looping = False
     epoch = 0
 
-    while (epoch < training_epochs) and (not done_looping):
+    while (epoch < training_epochs):
         epoch = epoch + 1
         for minibatch_index in xrange(n_train_batches):
             minibatch_avg_cost = train_fn(minibatch_index)
             iter = (epoch - 1) * n_train_batches + minibatch_index
+            # test it on the test set
+            test_losses = test_model()
+            test_score = numpy.mean(test_losses)
+            print(('     epoch %i, minibatch %i/%i, test error of '
+            'best model %f %%') %(epoch, minibatch_index + 1, n_train_batches,
+            test_score * 100.))
 
-            if (iter + 1) % validation_frequency == 0:
-                validation_losses = validate_model()
-                this_validation_loss = numpy.mean(validation_losses)
-                print('epoch %i, minibatch %i/%i, validation error %f %%' %
-                      (epoch, minibatch_index + 1, n_train_batches,
-                       this_validation_loss * 100.))
-
-                # if we got the best validation score until now
-                if this_validation_loss < best_validation_loss:
-
-                    #improve patience if loss improvement is good enough
-                    if (
-                        this_validation_loss < best_validation_loss *
-                        improvement_threshold
-                    ):
-                        patience = max(patience, iter * patience_increase)
-
-                    # save best validation score and iteration number
-                    best_validation_loss = this_validation_loss
-                    best_iter = iter
-
-                    # test it on the test set
-                    test_losses = test_model()
-                    test_score = numpy.mean(test_losses)
-                    print(('     epoch %i, minibatch %i/%i, test error of '
-                           'best model %f %%') %
-                          (epoch, minibatch_index + 1, n_train_batches,
-                           test_score * 100.))
-
-            if patience <= iter:
-                done_looping = True
-                break
 
     end_time = timeit.default_timer()
     print(
         (
-            'Optimization complete with best validation score of %f %%, '
+            'Optimization complete with , '
             'on iteration %i, '
             'with test performance %f %%'
         )
-        % (best_validation_loss * 100., best_iter + 1, test_score * 100.)
+        % ( best_iter + 1, test_score * 100.)
     )
     print >> sys.stderr, ('The training code for file ' +
                           os.path.split(__file__)[1] +

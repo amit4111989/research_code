@@ -130,7 +130,7 @@ def extract_labels(filename,job, beat_class=None, no_of_beats=None):
                time = arr[0].split(':')
                if int(time[0])>=5:
                      output.append([int(arr[1]),beat,pre_rr,post_rr,avg_rr,local_rr])
-                     
+
    return output
 
 def get_beat_class(beat):
