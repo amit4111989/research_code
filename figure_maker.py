@@ -40,7 +40,7 @@ for subdir, dirs, files in os.walk('data_extraction/classifier_data'):
 				else:
 					del line
 			plt.savefig(file[:-4]+'.png')
-	count+=1
+		count+=1
 
 # for i in file1:
 #   i = i.split(',')
