@@ -225,7 +225,7 @@ if __name__ == '__main__':
    #
    print '...Writing Data...'
    if job==1:
-      outfile = open('classifier_data_nobase/'+filename+'_'+beat_class+'.csv', 'w+')
+      outfile = open('bandpass_experiment/'+filename+'_'+beat_class+'_hamming.csv', 'w+')
    elif job==2:
       outfile = open('classifier_data/'+filename+'_train'+'.csv', 'w+')
    else:

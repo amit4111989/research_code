@@ -24,10 +24,10 @@ colors = [(0.0, 0.0, 0.0),(0.0, 0.0, 1.0),(0.75, 0, 0.75),(1.0, 0.0, 0.0),(0.75,
 
 x = []
 
-for subdir, dirs, files in os.walk('data_extraction/classifier_data'):
+for subdir, dirs, files in os.walk('data_extraction/bandpass_experiment'):
 	count=0
 	for file in files:
-		with open('data_extraction/classifier_data/'+file,'r') as f:
+		with open('data_extraction/bandpass_experiment/'+file,'r') as f:
 			pay = f.read().split('\n')
 			beats_arr = []
 			plt.figure(count)
