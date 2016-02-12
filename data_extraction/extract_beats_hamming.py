@@ -28,25 +28,24 @@
 import scipy
 import numpy
 import scipy.signal
+from scipy.signal import firwin
 import sys
 import itertools
 
 
 def clean_signal(
       ecg,  # The raw ECG signal
-      rate=360,   # Sampling rate in HZ
+      rate=360.0,   # Sampling rate in HZ
       # Window size in seconds to use for
-      lowfreq=0.1,
+      lowcut=5.0,
       # High frequency of the band pass filter
-      highfreq=100.0,
+      highcut=15.0,
 ):
 
-   # baseline correction and bandpass filter of signals
-   lowpass = scipy.signal.butter(1, highfreq/(rate/2.0), 'low')
-   highpass = scipy.signal.butter(1, lowfreq/(rate/2.0), 'high')
-   # TODO: Could use an actual bandpass filter
-   ecg_low = scipy.signal.filtfilt(*lowpass, x=ecg)
-   ecg_band = scipy.signal.filtfilt(*highpass, x=ecg_low)
+   nyq = 0.5 * rate
+   ecg_band = firwin(ecg, [lowcut, highcut], nyq=nyq, pass_zero=False,
+                  window=window, scale=False)
+   
    return ecg_band
 
 
