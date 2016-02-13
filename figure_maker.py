@@ -23,25 +23,29 @@ label_name = ['N','V','S','F','Q']
 colors = [(0.0, 0.0, 0.0),(0.0, 0.0, 1.0),(0.75, 0, 0.75),(1.0, 0.0, 0.0),(0.75, 0.75, 0)]
 
 x = []
-
-for subdir, dirs, files in os.walk('data_extraction/bandpass_experiment'):
+my_path = os.path.abspath(__file__)
+for subdir, dirs, files in os.walk('data_extraction/classifier_data/V_new2/'):
 	count=0
 	for file in files:
-		with open('data_extraction/bandpass_experiment/'+file,'r') as f:
+		with open('data_extraction/classifier_data/V_new2/'+file,'r') as f:
 			pay = f.read().split('\n')
 			beats_arr = []
-			plt.figure(count)
+			plt.figure(0)
 			for lines in pay:
 				line = lines.split(',')
 				if len(line)>1:
-					beats = [float(val) for val in line[:-5]]	
-					plt.plot(beats,color=colors[1])
+					beats = [float(val) for val in line[:-5]]
+					plt.plot(beats,color=colors[count])
 					beats_arr.append(beats)
 				else:
 					del line
-			plt.savefig(file[:-4]+'.png')
-		count+=1
 
+			#plt.savefig('figures/temp/'+file[:-4]+'.png')
+		if count==4:
+			count=0
+		else:
+			count+=1
+	plt.savefig('figures/temp/all_V_new2.png')
 # for i in file1:
 #   i = i.split(',')
 #   if len(i)>1:
