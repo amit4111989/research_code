@@ -36,7 +36,7 @@ for subdir, dirs, files in os.walk('testing_data'):
 					y.append(test_beats[-1])
 test_set = (np.array(x),y)
 
-file = open('testing_data/train_set.p','w+')
+file = open('testing_data/test_set.p','w+')
 cPickle.dump(test_set,file)
 file.close()
 
