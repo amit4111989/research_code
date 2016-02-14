@@ -231,11 +231,11 @@ if __name__ == '__main__':
    #
    print '...Writing Data...'
    if job==1:
-      outfile = open('classifier_data/'+filename+'_'+beat_class+'.csv', 'w+')
+      outfile = open('training_data/'+filename+'_'+beat_class+'.csv', 'w+')
    elif job==2:
-      outfile = open('classifier_data/'+filename+'_train'+'.csv', 'w+')
+      outfile = open('training_data/'+filename+'_train'+'.csv', 'w+')
    else:
-      outfile = open('classifier_data/'+filename+'_test'+'.csv', 'w+')
+      outfile = open('testing_data/'+filename+'_test'+'.csv', 'w+')
 
    print '...Almost Done...'
    for sample in samples:

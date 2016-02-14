@@ -271,7 +271,7 @@ class SdA(object):
         return train_fn,test_score
 
 
-def test_SdA(nins,nouts,hidden_layer_sizes,trainfile,testfile,corruption_levels,
+def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
              finetune_lr=0.1, pretraining_epochs=15,pretrain_lr=0.001, training_epochs=1000,
             batch_size=1):
     """
@@ -297,7 +297,7 @@ def test_SdA(nins,nouts,hidden_layer_sizes,trainfile,testfile,corruption_levels,
 
     """
 
-    datasets = load_data(trainfile,testfile)
+    datasets = load_data()
 
     train_set_x, train_set_y = datasets[0]
     test_set_x, test_set_y = datasets[1]

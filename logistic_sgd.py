@@ -135,7 +135,7 @@ class LogisticRegression(object):
             raise NotImplementedError()
 
 
-def load_data(trainfile,testfile):
+def load_data():
     ''' Loads the dataset
 
     :type dataset: string
@@ -146,32 +146,14 @@ def load_data(trainfile,testfile):
     # LOAD DATA #
     #############
 
-    def make_sets(payload):
-        train_set_x = []
-        train_y = []
-        for i in xrange(len(payload)):
-            payload[i] = payload[i].split(',')
-            if len(payload[i])>1:
-                payload[i] = [float(val) for val in payload[i]]
-                train_set_x.append(payload[i][:-5])
-                train_y.append(int(payload[i][-1]))
-            else:
-                del payload[i]
-        train_set = (np.array(train_set_x),train_y)
-        return train_set
-
     # make train set
-    f = open(trainfile,'r')
-    payload = f.read()
-    payload = payload.split('\n')
-    train_set = make_sets(payload)
+    f = open('data_extraction/training_data/train_set.p','r')
+    train_set = cPickle.load(f)
     f.close()
 
     # make test set
-    f = open(testfile,'r')
-    payload = f.read()
-    payload = payload.split('\n')
-    test_set = make_sets(payload)
+    f = open('data_extraction/testing_data/test_set.p','r')
+    test_set = cPickle.load(f)
     f.close()
 
     def shared_dataset(data_xy, borrow=True):
