@@ -15,7 +15,7 @@ for subdir, dirs, files in os.walk('training_data'):
 					train_beats = [float(i) for i in beats]
 					x.append(train_beats[:-5])
 					y.append(train_beats[-1])
-train_set = (np.array(x),y)
+train_set = (np.array(x,dtype='float32'),np.array(y))
 
 file = open('training_data/train_set.p','w+')
 cPickle.dump(train_set,file)
@@ -34,7 +34,7 @@ for subdir, dirs, files in os.walk('testing_data'):
 					test_beats = [float(i) for i in beats]
 					x.append(test_beats[:-5])
 					y.append(test_beats[-1])
-test_set = (np.array(x),y)
+test_set = (np.array(x,dtype='float32'),np.array(y))
 
 file = open('testing_data/test_set.p','w+')
 cPickle.dump(test_set,file)
