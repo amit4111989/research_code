@@ -7,7 +7,7 @@ y = []
 
 for subdir, dirs, files in os.walk('training_data'):
 	for file in files:
-		with open(file,'r') as f:
+		with open('training_data/'+file,'r') as f:
 			pay = f.read().split('\n')
 			for beats in pay:
 				beats = beats.split(',')
@@ -26,7 +26,7 @@ x = []
 y = []
 for subdir, dirs, files in os.walk('testing_data'):
 	for file in files:
-		with open(file,'r') as f:
+		with open('testing_data/'+file,'r') as f:
 			pay = f.read().split('\n')
 			for beats in pay:
 				beats = beats.split(',')
