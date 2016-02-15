@@ -173,7 +173,8 @@ class SdA(object):
         batch_begin = index * batch_size
         # ending of a batch given `index`
         batch_end = batch_begin + batch_size
-
+	
+	print 'in pretrain',train_set_x.get_value()
         pretrain_fns = []
         for dA in self.dA_layers:
             # get the cost and the updates list
@@ -183,8 +184,8 @@ class SdA(object):
             fn = theano.function(
                 inputs=[
                     index,
-                    theano.In(corruption_level, value=0.2),
-                    theano.In(learning_rate, value=0.1)
+                    theano.Param(corruption_level, default=0.2),
+                    theano.Param(learning_rate, default=0.1)
                 ],
                 outputs=cost,
                 updates=updates,
@@ -218,7 +219,7 @@ class SdA(object):
         '''
 
         (train_set_x, train_set_y) = datasets[0]
-        (test_set_x, test_set_y) = datasets[2]
+        (test_set_x, test_set_y) = datasets[1]
 
         # compute number of minibatches for training, validation and testing
         n_test_batches = test_set_x.get_value(borrow=True).shape[0]
@@ -300,6 +301,7 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
     datasets = load_data()
 
     train_set_x, train_set_y = datasets[0]
+    print train_set_x.get_value()
     test_set_x, test_set_y = datasets[1]
 
     # compute number of minibatches for training, validation and testing
@@ -369,15 +371,19 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
 
     while (epoch < training_epochs):
         epoch = epoch + 1
+	minibatch_avg_cost = []
+        t_score = []
         for minibatch_index in xrange(n_train_batches):
-            minibatch_avg_cost = train_fn(minibatch_index)
-            iter = (epoch - 1) * n_train_batches + minibatch_index
+            minibatch_avg_cost.append(train_fn(minibatch_index))
+            #iter = (epoch - 1) * n_train_batches + minibatch_index
             # test it on the test set
-            test_losses = test_model()
-            test_score = numpy.mean(test_losses)
-            print(('     epoch %i, minibatch %i/%i, test error of '
-            'best model %f %%') %(epoch, minibatch_index + 1, n_train_batches,
-            test_score * 100.))
+            if epoch==training_epochs-1:
+        	test_losses = test_model()
+        	t_score.append(numpy.mean(test_losses))
+                
+        print(('     epoch %i, cost of '
+        'best model %f %%, test_error %f') %(epoch,
+        numpy.mean(minibatch_avg_cost),numpy.mean(t_score)))
 
 
     end_time = timeit.default_timer()
