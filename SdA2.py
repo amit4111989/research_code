@@ -352,7 +352,7 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
 
     """
 
-    datasets = load_data(dataset)
+    datasets = load_data()
 
     train_set_x, train_set_y = datasets[0]
     valid_set_x, valid_set_y = datasets[1]
