@@ -439,7 +439,6 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
         epoch = epoch + 1
         for minibatch_index in range(n_train_batches):
             minibatch_avg_cost = train_fn(minibatch_index)
-            print 'prediction :',self.pred.get_value()
             iter = (epoch - 1) * n_train_batches + minibatch_index
 
             if (iter + 1) % validation_frequency == 0:
@@ -487,3 +486,14 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
     print(('The training code for file ' +
            os.path.split(__file__)[1] +
            ' ran for %.2fm' % ((end_time - start_time) / 60.)), file=sys.stderr)
+
+    #predict values
+    predict_model = theano.function(
+        inputs=[sda.x],
+        outputs=sda.y_pred)
+
+    test_set_x = test_set_x.get_value()
+    predicted_values = predict_model(test_set_x[:10])
+    print ("Predicted values for the first 10 examples in test set:")
+    print predicted_values
+
