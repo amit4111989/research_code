@@ -151,7 +151,7 @@ def load_data():
     train_set = cPickle.load(f)
     f.close()
 
-    f = open('data_extraction/training_data/valid_set.p','r')
+    f = open('data_extraction/validation_data/valid_set.p','r')
     valid_set = cPickle.load(f)
     f.close()
 
