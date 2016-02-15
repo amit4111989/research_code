@@ -179,6 +179,7 @@ class SdA(object):
         # symbolic variable that points to the number of errors made on the
         # minibatch given by self.x and self.y
         self.errors = self.logLayer.errors(self.y)
+        self.pred = self.logLayer.y_pred
 
     def pretraining_functions(self, train_set_x, batch_size):
         ''' Generates a list of functions, each of them implementing one
@@ -438,6 +439,7 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
         epoch = epoch + 1
         for minibatch_index in range(n_train_batches):
             minibatch_avg_cost = train_fn(minibatch_index)
+            print 'prediction :',self.pred.get_value()
             iter = (epoch - 1) * n_train_batches + minibatch_index
 
             if (iter + 1) % validation_frequency == 0:
