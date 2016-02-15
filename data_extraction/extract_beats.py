@@ -238,18 +238,41 @@ if __name__ == '__main__':
       outfile = open('testing_data/'+filename+'_test'+'.csv', 'w+')
 
    print '...Almost Done...'
-   for sample in samples:
-      # this is important because sample.index(val) can result in varying indexes depeding on the number of duplicates
-      val_count=1
-      for val in sample:
-         if len(sample)==val_count and not val_count==len(samples):
-            outfile.write(str(val)+'\n')
-         else:
-            outfile.write(str(val)+',')
-         val_count+=1
+   
+   # partition train set into train and validation sets
+
+   if not job==2:
+      for sample in samples:
+         # this is important because sample.index(val) can result in varying indexes depeding on the number of duplicates
+         val_count=1
+         for val in sample:
+            if len(sample)==val_count and not val_count==len(samples):
+               outfile.write(str(val)+'\n')
+            else:
+               outfile.write(str(val)+',')
+            val_count+=1
 
 
-   outfile.close()
+      outfile.close()
+
+   else:
+      sample_count = 0
+      for sample in samples:
+         # this is important because sample.index(val) can result in varying indexes depeding on the number of duplicates
+         val_count=1
+         if sample_count == (len(samples)/2)-1:
+            outfile.close()
+            outfile = open('validation_data/'+filename+'_valid'+'.csv', 'w+')
+         for val in sample:
+            if len(sample)==val_count and not val_count==len(samples):
+               outfile.write(str(val)+'\n')
+            else:
+               outfile.write(str(val)+',')
+            val_count+=1
+         sample_count+=1
+
+
+      outfile.close()
 
 
 

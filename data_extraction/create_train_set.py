@@ -40,3 +40,21 @@ file = open('testing_data/test_set.p','w+')
 cPickle.dump(test_set,file)
 file.close()
 
+x = []
+y = []
+for subdir, dirs, files in os.walk('validation_data'):
+	for file in files:
+		with open('validation_data/'+file,'r') as f:
+			pay = f.read().split('\n')
+			for beats in pay:
+				beats = beats.split(',')
+				if len(beats)>1:
+					test_beats = [float(i) for i in beats]
+					x.append(test_beats[:-5])
+					y.append(test_beats[-1])
+test_set = (np.array(x,dtype='float32'),np.array(y))
+
+file = open('validation_data/valid_set.p','w+')
+cPickle.dump(test_set,file)
+file.close()
+

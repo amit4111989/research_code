@@ -1,4 +1,4 @@
-from SdA import test_SdA
+from SdA2 import test_SdA
 
 if __name__=='__main__':
 
