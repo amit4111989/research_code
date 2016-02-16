@@ -180,6 +180,7 @@ class SdA(object):
         # minibatch given by self.x and self.y
         self.errors = self.logLayer.errors(self.y)
         self.pred = self.logLayer.y_pred
+        self.prob = self.logLayer.p_y_given_x
 
     def pretraining_functions(self, train_set_x, batch_size):
         ''' Generates a list of functions, each of them implementing one
@@ -218,8 +219,8 @@ class SdA(object):
             fn = theano.function(
                 inputs=[
                     index,
-                    theano.Param(corruption_level, default=0.2),
-                    theano.Param(learning_rate, default=0.1)
+                    theano.In(corruption_level, value=0.2),
+                    theano.In(learning_rate, value=0.1)
                 ],
                 outputs=cost,
                 updates=updates,
@@ -269,7 +270,7 @@ class SdA(object):
             fn = theano.function(
                 inputs=[
                     index,
-                    theano.Param(corruption_level, default=0.2),
+                    theano.In(corruption_level, value=0.2),
                 ],
                 outputs=cost,
                 givens={
@@ -288,7 +289,7 @@ class SdA(object):
             c.append(pretraining_fns[i](index=batch_index,
                 corruption=corruption_levels[i]))
 
-         return numpy.mean(c)
+         return c
 
     def build_finetune_functions(self, datasets, batch_size, learning_rate):
         '''Generates a function `train` that implements one step of
@@ -487,7 +488,7 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
 
     print('... finetunning the model')
     # early-stopping parameters
-    patience = 50 * n_train_batches  # look as this many examples regardless
+    patience = 5 * n_train_batches  # look as this many examples regardless
     patience_increase = 1.  # wait this much longer when a new best is
                             # found
     improvement_threshold = 0.995  # a relative improvement of this much is
@@ -580,16 +581,18 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
     	    	correct_y+=1
 
         if test_set_y[idx]==1:
-            	cost = sda.anomaly_score(pretraining_fns_anomaly,1,corruption_levels,pretrain_lr,idx)
-            	print ("\n\ncost of V beat %f\n\n"%(cost))
+            	cost = sda.anomaly_score(pretraining_fns_anomaly,2,corruption_levels,pretrain_lr,idx)
+ 		print ("\n\ncost of V beat")
+		print (numpy.mean(cost[1]))
     	    	total_y+=1
 
         if i==0 and test_set_y[idx]==i:
            	 correct_n+=1
 
       	if test_set_y[idx]==0:
-            	cost = sda.anomaly_score(pretraining_fns_anomaly,1,corruption_levels,pretrain_lr,idx)
-            	print ("cost of N beat %f"%(cost))
+            	cost = sda.anomaly_score(pretraining_fns_anomaly,2,corruption_levels,pretrain_lr,idx)
+		print ("cost of N beat")
+		print (numpy.mean(cost[1]))
     	    	total_n+=1
         idx+=1
 
