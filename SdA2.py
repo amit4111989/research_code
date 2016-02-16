@@ -45,7 +45,7 @@ from theano.tensor.shared_randomstreams import RandomStreams
 from logistic_sgd import LogisticRegression, load_data
 from mlp import HiddenLayer
 from dA import dA
-
+import cPickle as cp
 
 # start-snippet-1
 class SdA(object):
@@ -417,8 +417,8 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
 
     print('... finetunning the model')
     # early-stopping parameters
-    patience = 10 * n_train_batches  # look as this many examples regardless
-    patience_increase = 2.  # wait this much longer when a new best is
+    patience = 50 * n_train_batches  # look as this many examples regardless
+    patience_increase = 1.  # wait this much longer when a new best is
                             # found
     improvement_threshold = 0.995  # a relative improvement of this much is
                                    # considered significant
@@ -466,9 +466,9 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
                     test_losses = test_model()
                     test_score = numpy.mean(test_losses)
                     print(('     epoch %i, minibatch %i/%i, test error of '
-                           'best model %f %%') %
-                          (epoch, minibatch_index + 1, n_train_batches,
-                           test_score * 100.))
+                    'best model %f %%') %
+                    (epoch, minibatch_index + 1, n_train_batches,
+                     test_score * 100.))
 
             if patience <= iter:
                 done_looping = True
@@ -490,10 +490,39 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
     #predict values
     predict_model = theano.function(
         inputs=[sda.x],
-        outputs=sda.y_pred)
-
-    test_set_x = test_set_x.get_value()
-    predicted_values = predict_model(test_set_x[:10])
+        outputs=sda.pred)
+    
+    f = open('data_extraction/testing_data/test_set.p','r')
+    data_set = cp.load(f)
+    f.close()
+    test_set_y = data_set[1]
+    predicted_values = predict_model(test_set_x.get_value())
     print ("Predicted values for the first 10 examples in test set:")
-    print predicted_values
+    idx = 0
+    correct_y =  0
+    total_y = 0
+    total_n=0
+    correct_n = 0
+    for i in predicted_values:
+	if i==1 and test_set_y[idx]==i:
+		correct_y+=1
+        if test_set_y[idx]==1:
+		total_y+=1
+        if i==0 and test_set_y[idx]==i:
+       		correct_n+=1
+  	if test_set_y[idx]==0:
+		total_n+=1
+        idx+=1
+    print ("correct y")
+    print (correct_y)
+    print ("total y")
+    print (total_y)
+    print ("correct n")
+    print (correct_n)
+    print ("total n")
+    print (total_n)
+    print ("total beats")
+    print (idx)
+
+    print (predicted_values)
 

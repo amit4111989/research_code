@@ -194,7 +194,7 @@ def load_data():
     test_set_x, test_set_y = shared_dataset(test_set)
     valid_set_x, valid_set_y = shared_dataset(valid_set)
     train_set_x, train_set_y = shared_dataset(train_set)
-
+ 
     rval = [(train_set_x, train_set_y), (valid_set_x, valid_set_y),
             (test_set_x, test_set_y)]
     return rval
@@ -202,7 +202,7 @@ def load_data():
     
 def sgd_optimization_mnist(learning_rate=0.13, n_epochs=1000,
                            dataset='mnist.pkl.gz',
-                           batch_size=600):
+                           batch_size=1):
     """
     Demonstrate stochastic gradient descent optimization of a log-linear
     model
@@ -224,7 +224,7 @@ def sgd_optimization_mnist(learning_rate=0.13, n_epochs=1000,
     datasets = load_data()
 
     train_set_x, train_set_y = datasets[0]
-    valid_set_x,valid_set_y = dataset[1]
+    valid_set_x,valid_set_y = datasets[1]
     test_set_x, test_set_y = datasets[2]
 
     # compute number of minibatches for training, validation and testing
@@ -247,7 +247,7 @@ def sgd_optimization_mnist(learning_rate=0.13, n_epochs=1000,
 
     # construct the logistic regression class
     # Each MNIST image has size 28*28
-    classifier = LogisticRegression(input=x, n_in=28 * 28, n_out=10)
+    classifier = LogisticRegression(input=x, n_in=300, n_out=3)
 
     # the cost we minimize during training is the negative log likelihood of
     # the model in symbolic format
@@ -302,10 +302,10 @@ def sgd_optimization_mnist(learning_rate=0.13, n_epochs=1000,
     ###############
     print '... training the model'
     # early-stopping parameters
-    patience = 500  # look as this many examples regardless
-    patience_increase = 2  # wait this much longer when a new best is
+    patience = 5000  # look as this many examples regardless
+    patience_increase = 1  # wait this much longer when a new best is
                                   # found
-    improvement_threshold = 0.995  # a relative improvement of this much is
+    improvement_threshold = 0.095  # a relative improvement of this much is
                                   # considered significant
     validation_frequency = min(n_train_batches, patience / 2)
                                   # go through this many
@@ -419,3 +419,4 @@ def predict():
 
 if __name__ == '__main__':
     sgd_optimization_mnist()
+    predict()
