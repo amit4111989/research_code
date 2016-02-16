@@ -221,7 +221,7 @@ class dA(object):
         """
         return T.nnet.sigmoid(T.dot(hidden, self.W_prime) + self.b_prime)
 
-    def get_cost_updates(self, corruption_level, learning_rate):
+    def get_cost_updates(self, corruption_level, learning_rate, anomaly=False):
         """ This function computes the cost and the updates for one trainng
         step of the dA """
 
@@ -239,16 +239,19 @@ class dA(object):
         #        the minibatch
         cost = T.mean(L)
 
-        # compute the gradients of the cost of the `dA` with respect
-        # to its parameters
-        gparams = T.grad(cost, self.params)
-        # generate the list of updates
-        updates = [
-            (param, param - learning_rate * gparam)
-            for param, gparam in zip(self.params, gparams)
-        ]
+        if anomaly:
+            return cost
+        else:
+            # compute the gradients of the cost of the `dA` with respect
+            # to its parameters
+            gparams = T.grad(cost, self.params)
+            # generate the list of updates
+            updates = [
+                (param, param - learning_rate * gparam)
+                for param, gparam in zip(self.params, gparams)
+            ]
 
-        return (cost, updates)
+            return (cost, updates)
 
 
 def test_dA(learning_rate=0.1, training_epochs=15,

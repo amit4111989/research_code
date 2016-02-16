@@ -232,6 +232,66 @@ class SdA(object):
 
         return pretrain_fns
 
+    def pretraining_functions_test(self, train_set_x, batch_size):
+        ''' Generates a list of functions, each of them implementing one
+        step in trainnig the dA corresponding to the layer with same index.
+        The function will require as input the minibatch index, and to train
+        a dA you just need to iterate, calling the corresponding function on
+        all minibatch indexes.
+
+        :type train_set_x: theano.tensor.TensorType
+        :param train_set_x: Shared variable that contains all datapoints used
+                            for training the dA
+
+        :type batch_size: int
+        :param batch_size: size of a [mini]batch
+
+        :type learning_rate: float
+        :param learning_rate: learning rate used during training for any of
+                              the dA layers
+        '''
+
+        # index to a [mini]batch
+        index = T.lscalar('index')  # index to a minibatch
+        corruption_level = T.scalar('corruption')  # % of corruption to use
+        learning_rate = T.scalar('lr')  # learning rate to use
+        # begining of a batch, given `index`
+        batch_begin = index * batch_size
+        # ending of a batch given `index`
+        batch_end = batch_begin + batch_size
+
+        pretrain_fns = []
+        for dA in self.dA_layers:
+            # get the cost and the updates list
+            cost = dA.get_cost_updates(corruption_level,
+                                                learning_rate,anomaly=True)
+            # compile the theano function
+            fn = theano.function(
+                inputs=[
+                    index,
+                    theano.Param(corruption_level, default=0.2),
+                    theano.Param(learning_rate, default=0.1)
+                ],
+                outputs=cost,
+                updates=updates,
+                givens={
+                    self.x: train_set_x[batch_begin: batch_end]
+                }
+            )
+            # append `fn` to the list of functions
+            pretrain_fns.append(fn)
+
+        return pretrain_fns
+
+
+    def anomaly_score(self,pretraining_fns,layers,corruption_levels,pretrain_lr,batch_index):
+        
+         for i in range(layers):
+            c.append(pretraining_fns[i](index=batch_index,
+                corruption=corruption_levels[i],lr=pretrain_lr))
+
+        return numpy.mean(c)
+
     def build_finetune_functions(self, datasets, batch_size, learning_rate):
         '''Generates a function `train` that implements one step of
         finetuning, a function `validate` that computes the error on
@@ -402,6 +462,18 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
     print(('The pretraining code for file ' +
            os.path.split(__file__)[1] +
            ' ran for %.2fm' % ((end_time - start_time) / 60.)), file=sys.stderr)
+
+
+
+    #######################
+    # Setting up Anaomaly #
+    #######################
+
+    print("Setting up anomaly detector")
+    pretraining_fns_anomaly = sda.pretraining_functions_test(train_set_x=test_set_x,
+                                                batch_size=batch_size)
+   
+
     # end-snippet-4
     ########################
     # FINETUNING THE MODEL #
@@ -439,6 +511,8 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
         epoch = epoch + 1
         for minibatch_index in range(n_train_batches):
             minibatch_avg_cost = train_fn(minibatch_index)
+
+
             iter = (epoch - 1) * n_train_batches + minibatch_index
 
             if (iter + 1) % validation_frequency == 0:
@@ -504,15 +578,23 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
     total_n=0
     correct_n = 0
     for i in predicted_values:
-	if i==1 and test_set_y[idx]==i:
-		correct_y+=1
+    	if i==1 and test_set_y[idx]==i:
+    		correct_y+=1
+
         if test_set_y[idx]==1:
-		total_y+=1
+            cost = sda.anomaly_score(pretraining_fns_anomaly,range(sda.n_layers),corruption_levels,pretrain_lr,idx)
+            print ("cost of V beat %f"%(cost))
+    		total_y+=1
+
         if i==0 and test_set_y[idx]==i:
-       		correct_n+=1
-  	if test_set_y[idx]==0:
-		total_n+=1
-        idx+=1
+           	correct_n+=1
+
+      	if test_set_y[idx]==0:
+            cost = sda.anomaly_score(pretraining_fns_anomaly,range(sda.n_layers),corruption_levels,pretrain_lr,idx)
+            print ("cost of N beat %f"%(cost))
+    		total_n+=1
+            idx+=1
+
     print ("correct y")
     print (correct_y)
     print ("total y")
