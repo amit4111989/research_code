@@ -262,10 +262,12 @@ class SdA(object):
         batch_end = batch_begin + batch_size
 
         pretrain_fns = []
+        
         for dA in self.dA_layers:
             # get the cost and the updates list
             cost = dA.get_cost_updates(corruption_level,
                                                 learning_rate,anomaly=True)
+
             # compile the theano function
             fn = theano.function(
                 inputs=[
@@ -279,6 +281,7 @@ class SdA(object):
             )
             # append `fn` to the list of functions
             pretrain_fns.append(fn)
+
 
         return pretrain_fns
 

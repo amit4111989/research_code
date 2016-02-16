@@ -210,6 +210,13 @@ class dA(object):
                                         p=1 - corruption_level,
                                         dtype=theano.config.floatX) * input
 
+    def get_recon_error(self):
+        """ Compute reconstruction error for anomaly score"""
+        y = self.get_hidden_values(self.x)
+        z = self.get_reconstructed_input(y)
+        L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
+        return T.mean(L)
+
     def get_hidden_values(self, input):
         """ Computes the values of the hidden layer """
         return T.nnet.sigmoid(T.dot(input, self.W) + self.b)
@@ -224,19 +231,15 @@ class dA(object):
     def get_cost_updates(self, corruption_level, learning_rate, anomaly=False):
         """ This function computes the cost and the updates for one trainng
         step of the dA """
-
+        
+        
         tilde_x = self.get_corrupted_input(self.x, corruption_level)
         y = self.get_hidden_values(tilde_x)
         z = self.get_reconstructed_input(y)
-        
-        if anomaly:
-	    L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
-            return T.mean(L)
-        else:
 	    # note : we sum over the size of a datapoint; if we are using
             #        minibatches, L will be a vector, with one entry per
 	    #        example in minibatch
-            L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
+        L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
 
             # note : L is now a vector, where each element is the
             #        cross-entropy cost of the reconstruction of the
@@ -245,14 +248,14 @@ class dA(object):
 	    cost = T.mean(L) 
             # compute the gradients of the cost of the `dA` with respect
             # to its parameters
-            gparams = T.grad(cost, self.params)
+        gparams = T.grad(cost, self.params)
             # generate the list of updates
-            updates = [
+        updates = [
                 (param, param - learning_rate * gparam)
                 for param, gparam in zip(self.params, gparams)
-            ]
+        ]
 
-            return (cost, updates)
+        return (cost, updates)
 
 
 def test_dA(learning_rate=0.1, training_epochs=15,

@@ -3,7 +3,7 @@ from SdA2 import test_SdA
 if __name__=='__main__':
 
   nins = 300
-  nouts = 3
+  nouts = 1
   hidden_layer_sizes = [400,100]
   corruption_levels = [.3,.3]
 
