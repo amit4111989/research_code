@@ -221,10 +221,11 @@ def sgd_optimization_mnist(learning_rate=0.13, n_epochs=1000,
                  http://www.iro.umontreal.ca/~lisa/deep/data/mnist/mnist.pkl.gz
 
     """
-    datasets = load_data(dataset)
+    datasets = load_data()
 
     train_set_x, train_set_y = datasets[0]
-    test_set_x, test_set_y = datasets[1]
+    valid_set_x,valid_set_y = dataset[1]
+    test_set_x, test_set_y = datasets[2]
 
     # compute number of minibatches for training, validation and testing
     n_train_batches = train_set_x.get_value(borrow=True).shape[0] / batch_size
@@ -301,7 +302,7 @@ def sgd_optimization_mnist(learning_rate=0.13, n_epochs=1000,
     ###############
     print '... training the model'
     # early-stopping parameters
-    patience = 5000  # look as this many examples regardless
+    patience = 500  # look as this many examples regardless
     patience_increase = 2  # wait this much longer when a new best is
                                   # found
     improvement_threshold = 0.995  # a relative improvement of this much is
@@ -407,8 +408,7 @@ def predict():
         outputs=classifier.y_pred)
 
     # We can test it on some examples from test test
-    dataset='mnist.pkl.gz'
-    datasets = load_data(dataset)
+    datasets = load_data()
     test_set_x, test_set_y = datasets[2]
     test_set_x = test_set_x.get_value()
 
