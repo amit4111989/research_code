@@ -245,7 +245,7 @@ class dA(object):
             #        cross-entropy cost of the reconstruction of the
             #        corresponding exam
 
-	    cost = T.mean(L) 
+        cost = T.mean(L) 
             # compute the gradients of the cost of the `dA` with respect
             # to its parameters
         gparams = T.grad(cost, self.params)
