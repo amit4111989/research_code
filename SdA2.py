@@ -270,10 +270,8 @@ class SdA(object):
                 inputs=[
                     index,
                     theano.Param(corruption_level, default=0.2),
-                    theano.Param(learning_rate, default=0.1)
                 ],
                 outputs=cost,
-                updates=updates,
                 givens={
                     self.x: train_set_x[batch_begin: batch_end]
                 }
@@ -285,12 +283,12 @@ class SdA(object):
 
 
     def anomaly_score(self,pretraining_fns,layers,corruption_levels,pretrain_lr,batch_index):
-        
+         c=[]
          for i in range(layers):
             c.append(pretraining_fns[i](index=batch_index,
-                corruption=corruption_levels[i],lr=pretrain_lr))
+                corruption=corruption_levels[i]))
 
-        return numpy.mean(c)
+         return numpy.mean(c)
 
     def build_finetune_functions(self, datasets, batch_size, learning_rate):
         '''Generates a function `train` that implements one step of
@@ -579,21 +577,21 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
     correct_n = 0
     for i in predicted_values:
     	if i==1 and test_set_y[idx]==i:
-    		correct_y+=1
+    	    	correct_y+=1
 
         if test_set_y[idx]==1:
-            cost = sda.anomaly_score(pretraining_fns_anomaly,range(sda.n_layers),corruption_levels,pretrain_lr,idx)
-            print ("cost of V beat %f"%(cost))
-    		total_y+=1
+            	cost = sda.anomaly_score(pretraining_fns_anomaly,1,corruption_levels,pretrain_lr,idx)
+            	print ("\n\ncost of V beat %f\n\n"%(cost))
+    	    	total_y+=1
 
         if i==0 and test_set_y[idx]==i:
-           	correct_n+=1
+           	 correct_n+=1
 
       	if test_set_y[idx]==0:
-            cost = sda.anomaly_score(pretraining_fns_anomaly,range(sda.n_layers),corruption_levels,pretrain_lr,idx)
-            print ("cost of N beat %f"%(cost))
-    		total_n+=1
-            idx+=1
+            	cost = sda.anomaly_score(pretraining_fns_anomaly,1,corruption_levels,pretrain_lr,idx)
+            	print ("cost of N beat %f"%(cost))
+    	    	total_n+=1
+        idx+=1
 
     print ("correct y")
     print (correct_y)
@@ -607,4 +605,4 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
     print (idx)
 
     print (predicted_values)
-
+    print (test_set_y)
