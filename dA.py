@@ -235,9 +235,8 @@ class dA(object):
         """ This function computes the cost and the updates for one trainng
         step of the dA """
 
-        corruption = corruption_level
         tilde_x = self.get_corrupted_input(self.x, corruption_level)
-        y = self.get_hidden_values(self.x)
+        y = self.get_hidden_values(tilde_x)
         z = self.get_reconstructed_input(y)
 	    # note : we sum over the size of a datapoint; if we are using
             #        minibatches, L will be a vector, with one entry per
@@ -327,11 +326,11 @@ def test_dA(learning_rate=0.001, training_epochs=1,
         theano_rng=theano_rng,
         input=x,
         n_visible=300,
-        n_hidden=50
+        n_hidden=400
     )
 
     cost, updates = da.get_cost_updates(
-        corruption_level=0.3,
+        corruption_level=0.5,
         learning_rate=learning_rate
     )
 
@@ -380,7 +379,7 @@ def test_dA(learning_rate=0.001, training_epochs=1,
     #
 
     cost, updates = da.get_cost_updates(
-        corruption_level=0.3,
+        corruption_level=0.1,
         learning_rate=learning_rate
     )
 

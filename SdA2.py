@@ -488,7 +488,7 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
 
     print('... finetunning the model')
     # early-stopping parameters
-    patience = 10 * n_train_batches  # look as this many examples regardless
+    patience = 15 * n_train_batches  # look as this many examples regardless
     patience_increase = 1.  # wait this much longer when a new best is
                             # found
     improvement_threshold = 0.995  # a relative improvement of this much is
@@ -563,7 +563,7 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
     #predict values
     predict_model = theano.function(
         inputs=[sda.x],
-        outputs=sda.pred)
+        outputs=[sda.prob,sda.pred])
 
     f = open('data_extraction/testing_data/test_set.p','r')
     data_set = cp.load(f)
@@ -576,22 +576,26 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
     total_y = 0
     total_n=0
     correct_n = 0
-    for i in predicted_values:
+    for i in predicted_values[1]:
     	if i==1 and test_set_y[idx]==i:
     	    	correct_y+=1
 
         if test_set_y[idx]==1:
-            	cost = sda.anomaly_score(pretraining_fns_anomaly,2,idx)
- 		print ("\n\ncost of V beat %f\n\n"%(numpy.mean(cost)))
-    	    	total_y+=1
+            	#cost = sda.anomaly_score(pretraining_fns_anomaly,2,idx)
+ 		#print ("\n\ncost of V beat %f\n\n"%(numpy.mean(cost)))
+    	    	print ("V beat")
+		print (predicted_values[0][idx])
+		total_y+=1
 
         if i==0 and test_set_y[idx]==i:
            	 correct_n+=1
 
       	if test_set_y[idx]==0:
-            	cost = sda.anomaly_score(pretraining_fns_anomaly,2,idx)
-		print ("cost of N beat %f"%(numpy.mean(cost)))
-    	    	total_n+=1
+            	#cost = sda.anomaly_score(pretraining_fns_anomaly,2,idx)
+		#print ("cost of N beat %f"%(numpy.mean(cost)))
+    	    	print ("N beat")
+		print (predicted_values[0][idx])
+		total_n+=1
         idx+=1
 
     print ("correct y")
