@@ -148,6 +148,7 @@ def load_data():
 
 
     f = open('data_extraction/training_data/train_set.p','r')
+    #f = open('data_extraction/training_data/train_set.p','r')
     train_set = cPickle.load(f)
     f.close()
 
@@ -156,6 +157,7 @@ def load_data():
     f.close()
 
     f = open('data_extraction/testing_data/test_set.p','r')
+    #f = open('data_extraction/testing_data/test_set.p','r')
     test_set = cPickle.load(f)
     f.close()
 

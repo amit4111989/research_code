@@ -218,7 +218,7 @@ class dA(object):
         z = self.get_reconstructed_input(y)
         #L = T.sqrt(T.mean(T.sqr(self.x-z)))
         L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
-        return L
+        return T.mean(L)
 
     def get_hidden_values(self, input):
         """ Computes the values of the hidden layer """
@@ -326,11 +326,11 @@ def test_dA(learning_rate=0.001, training_epochs=1,
         theano_rng=theano_rng,
         input=x,
         n_visible=300,
-        n_hidden=400
+        n_hidden=50
     )
 
     cost, updates = da.get_cost_updates(
-        corruption_level=0.5,
+        corruption_level=0.3,
         learning_rate=learning_rate
     )
 
@@ -379,7 +379,7 @@ def test_dA(learning_rate=0.001, training_epochs=1,
     #
 
     cost, updates = da.get_cost_updates(
-        corruption_level=0.1,
+        corruption_level=0.3,
         learning_rate=learning_rate
     )
 
@@ -399,7 +399,7 @@ def test_dA(learning_rate=0.001, training_epochs=1,
         }
     )
 
-    f = open('data_extraction/testing_data/test_set.p','r')
+    f = open('data_extraction/anomaly_tester/test_set.p','r')
     data_set = cp.load(f)
     f.close()
     test_set_y = data_set[1]

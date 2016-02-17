@@ -75,7 +75,7 @@ def extract_signal(filename):
       i = i.split(',')
       if len(i)>1:
          temp = float(i[1])
-         temp = (temp)/2047.00
+         temp = (temp)/1023.50
          output.append(temp)
    return output
 
@@ -231,11 +231,11 @@ if __name__ == '__main__':
    #
    print '...Writing Data...'
    if job==1:
-      outfile = open('training_data/'+filename+'_'+beat_class+'.csv', 'w+')
+      outfile = open('anomaly_tester/'+filename+'_'+beat_class+'.csv', 'w+')
    elif job==2:
-      outfile = open('training_data/'+filename+'_train'+'.csv', 'w+')
+      outfile = open('anomaly_tester/'+filename+'_train'+'.csv', 'w+')
    else:
-      outfile = open('testing_data/'+filename+'_test'+'.csv', 'w+')
+      outfile = open('anomaly_tester/'+filename+'_test'+'.csv', 'w+')
 
    print '...Almost Done...'
 
