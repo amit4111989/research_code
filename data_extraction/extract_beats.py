@@ -238,7 +238,7 @@ if __name__ == '__main__':
       outfile = open('testing_data/'+filename+'_test'+'.csv', 'w+')
 
    print '...Almost Done...'
-   
+
    # partition train set into train and validation sets
 
    if not job==2:

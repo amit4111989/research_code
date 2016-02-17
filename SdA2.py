@@ -262,7 +262,7 @@ class SdA(object):
         batch_end = batch_begin + batch_size
 
         pretrain_fns = []
-        
+
         for dA in self.dA_layers:
             # get the cost and the updates list
             cost = dA.get_recon_error()
@@ -471,7 +471,7 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
     print("Setting up anomaly detector")
     pretraining_fns_anomaly = sda.pretraining_functions_test(train_set_x=test_set_x,
                                                 batch_size=batch_size)
-   
+
 
     # end-snippet-4
     ########################
@@ -564,7 +564,7 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
     predict_model = theano.function(
         inputs=[sda.x],
         outputs=sda.pred)
-    
+
     f = open('data_extraction/testing_data/test_set.p','r')
     data_set = cp.load(f)
     f.close()

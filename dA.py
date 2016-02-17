@@ -38,6 +38,7 @@ import numpy
 
 import theano
 import theano.tensor as T
+import cPickle as cp
 from theano.tensor.shared_randomstreams import RandomStreams
 
 from logistic_sgd import load_data
@@ -212,10 +213,12 @@ class dA(object):
 
     def get_recon_error(self):
         """ Compute reconstruction error for anomaly score"""
+
         y = self.get_hidden_values(self.x)
         z = self.get_reconstructed_input(y)
+        #L = T.sqrt(T.mean(T.sqr(self.x-z)))
         L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
-        return T.mean(L)
+        return L
 
     def get_hidden_values(self, input):
         """ Computes the values of the hidden layer """
@@ -231,21 +234,22 @@ class dA(object):
     def get_cost_updates(self, corruption_level, learning_rate, anomaly=False):
         """ This function computes the cost and the updates for one trainng
         step of the dA """
-        
-        
+
+        corruption = corruption_level
         tilde_x = self.get_corrupted_input(self.x, corruption_level)
-        y = self.get_hidden_values(tilde_x)
+        y = self.get_hidden_values(self.x)
         z = self.get_reconstructed_input(y)
 	    # note : we sum over the size of a datapoint; if we are using
             #        minibatches, L will be a vector, with one entry per
 	    #        example in minibatch
+        #L = T.sqrt(T.mean(T.sqr(self.x-z)))
         L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
 
             # note : L is now a vector, where each element is the
             #        cross-entropy cost of the reconstruction of the
             #        corresponding exam
 
-        cost = T.mean(L) 
+        cost = T.mean(L)
             # compute the gradients of the cost of the `dA` with respect
             # to its parameters
         gparams = T.grad(cost, self.params)
@@ -258,9 +262,9 @@ class dA(object):
         return (cost, updates)
 
 
-def test_dA(learning_rate=0.1, training_epochs=15,
+def test_dA(learning_rate=0.001, training_epochs=1,
             dataset='mnist.pkl.gz',
-            batch_size=20, output_folder='dA_plots'):
+            batch_size=1, output_folder='dA_plots'):
 
     """
     This demo is tested on MNIST
@@ -276,8 +280,26 @@ def test_dA(learning_rate=0.1, training_epochs=15,
     :param dataset: path to the picked dataset
 
     """
-    datasets = load_data(dataset)
+    datasets = load_data()
     train_set_x, train_set_y = datasets[0]
+    random_data = theano.shared(numpy.asarray(numpy.random.uniform(0.3,0.4,(10000,30)),
+                                               dtype=theano.config.floatX),
+                                  borrow=True)
+    # file = open('new_train_set.p','r')
+    # train_set_x = cp.load(file)
+    # file.close()
+
+    test_set_x, test_set_y = datasets[2]
+    # testx = test_set_x.get_value()
+    # test_set_x = []
+    # for i in testx:
+    #     test_set_x.append(i[120:150])
+    # test_set_x = theano.shared(numpy.asarray(test_set_x,
+    #                                            dtype=theano.config.floatX),
+    #                              borrow=True)
+
+
+
 
     # compute number of minibatches for training, validation and testing
     n_train_batches = train_set_x.get_value(borrow=True).shape[0] / batch_size
@@ -288,68 +310,11 @@ def test_dA(learning_rate=0.1, training_epochs=15,
     x = T.matrix('x')  # the data is presented as rasterized images
     # end-snippet-2
 
-    if not os.path.isdir(output_folder):
-        os.makedirs(output_folder)
-    os.chdir(output_folder)
+    # if not os.path.isdir(output_folder):
+    #     os.makedirs(output_folder)
+    # os.chdir(output_folder)
 
-    ####################################
-    # BUILDING THE MODEL NO CORRUPTION #
-    ####################################
 
-    rng = numpy.random.RandomState(123)
-    theano_rng = RandomStreams(rng.randint(2 ** 30))
-
-    da = dA(
-        numpy_rng=rng,
-        theano_rng=theano_rng,
-        input=x,
-        n_visible=28 * 28,
-        n_hidden=500
-    )
-
-    cost, updates = da.get_cost_updates(
-        corruption_level=0.,
-        learning_rate=learning_rate
-    )
-
-    train_da = theano.function(
-        [index],
-        cost,
-        updates=updates,
-        givens={
-            x: train_set_x[index * batch_size: (index + 1) * batch_size]
-        }
-    )
-
-    start_time = timeit.default_timer()
-
-    ############
-    # TRAINING #
-    ############
-
-    # go through training epochs
-    for epoch in xrange(training_epochs):
-        # go through trainng set
-        c = []
-        for batch_index in xrange(n_train_batches):
-            c.append(train_da(batch_index))
-
-        print 'Training epoch %d, cost ' % epoch, numpy.mean(c)
-
-    end_time = timeit.default_timer()
-
-    training_time = (end_time - start_time)
-
-    print >> sys.stderr, ('The no corruption code for file ' +
-                          os.path.split(__file__)[1] +
-                          ' ran for %.2fm' % ((training_time) / 60.))
-    image = Image.fromarray(
-        tile_raster_images(X=da.W.get_value(borrow=True).T,
-                           img_shape=(28, 28), tile_shape=(10, 10),
-                           tile_spacing=(1, 1)))
-    image.save('filters_corruption_0.png')
-
-    # start-snippet-3
     #####################################
     # BUILDING THE MODEL CORRUPTION 30% #
     #####################################
@@ -361,8 +326,8 @@ def test_dA(learning_rate=0.1, training_epochs=15,
         numpy_rng=rng,
         theano_rng=theano_rng,
         input=x,
-        n_visible=28 * 28,
-        n_hidden=500
+        n_visible=300,
+        n_hidden=50
     )
 
     cost, updates = da.get_cost_updates(
@@ -404,14 +369,88 @@ def test_dA(learning_rate=0.1, training_epochs=15,
     # end-snippet-3
 
     # start-snippet-4
-    image = Image.fromarray(tile_raster_images(
-        X=da.W.get_value(borrow=True).T,
-        img_shape=(28, 28), tile_shape=(10, 10),
-        tile_spacing=(1, 1)))
-    image.save('filters_corruption_30.png')
-    # end-snippet-4
+    # image = Image.fromarray(tile_raster_images(
+    #     X=da.W.get_value(borrow=True).T,
+    #     img_shape=(28, 28), tile_shape=(10, 10),
+    #     tile_spacing=(1, 1)))
+    # image.save('filters_corruption_30.png')
+    # # end-snippet-4
 
-    os.chdir('../')
+    # os.chdir('../')
+    #
+
+    cost, updates = da.get_cost_updates(
+        corruption_level=0.3,
+        learning_rate=learning_rate
+    )
+
+    # test_da = theano.function(
+    #     [index],
+    #     cost,
+    #     givens={
+    #         x: random_data[index * batch_size: (index + 1) * batch_size]
+    #     }
+    # )
+
+    test_da_real = theano.function(
+        [index],
+        cost,
+        givens={
+            x: test_set_x[index * batch_size: (index + 1) * batch_size]
+        }
+    )
+
+    f = open('data_extraction/testing_data/test_set.p','r')
+    data_set = cp.load(f)
+    f.close()
+    test_set_y = data_set[1]
+    idx = 0
+    correct_y =  0
+    total_y = 0
+    total_n=0
+    correct_n = 0
+    print (len (test_set_y))
+
+    for i in xrange(len(test_set_y)):
+
+        if test_set_y[idx]==1:
+            cost = test_da_real(idx)
+            print ("\n\ncost of V beat %f\n\n"%(numpy.mean(cost)))
+            total_y+=1
+
+        else:
+            cost = test_da_real(idx)
+            print ("cost of N beat %f"%(numpy.mean(cost)))
+            total_n+=1
+
+        idx+=1
+
+    # idx = 0
+    # random_data = numpy.random.uniform(0.1,0.7,(10000,300))
+    # for i in xrange(len(random_data[0:8])):
+
+
+    #     cost = test_da(idx)
+    #     print ("\n\ncost of random beat %f\n\n"%(numpy.mean(cost)))
+
+
+    #     idx+=1
+
+    print ("correct y")
+    print (correct_y)
+    print ("total y")
+    print (total_y)
+    print ("correct n")
+    print (correct_n)
+    print ("total n")
+    print (total_n)
+    print ("total beats")
+    print (idx)
+
+    print (test_set_y)
+
+
+
 
 
 if __name__ == '__main__':

@@ -146,7 +146,7 @@ def load_data():
     # LOAD DATA #
     #############
 
-  
+
     f = open('data_extraction/training_data/train_set.p','r')
     train_set = cPickle.load(f)
     f.close()
@@ -159,7 +159,7 @@ def load_data():
     test_set = cPickle.load(f)
     f.close()
 
-    
+
     # train_set, valid_set, test_set format: tuple(input, target)
     # input is a numpy.ndarray of 2 dimensions (a matrix)
     # where each row corresponds to an example. target is a
@@ -194,12 +194,12 @@ def load_data():
     test_set_x, test_set_y = shared_dataset(test_set)
     valid_set_x, valid_set_y = shared_dataset(valid_set)
     train_set_x, train_set_y = shared_dataset(train_set)
- 
+
     rval = [(train_set_x, train_set_y), (valid_set_x, valid_set_y),
             (test_set_x, test_set_y)]
     return rval
 
-    
+
 def sgd_optimization_mnist(learning_rate=0.13, n_epochs=1000,
                            dataset='mnist.pkl.gz',
                            batch_size=1):
