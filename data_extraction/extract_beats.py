@@ -54,7 +54,7 @@ def clean_signal(
 
 def shift_offset(ecg):
    """   Add an offset so that the signal stays within positive values """
-   ecg = [i+0.018 for i in ecg]
+   ecg = [i+0.08 for i in ecg]
    return ecg
 
 def delete_empty_vals(ecg):
@@ -80,7 +80,7 @@ def extract_signal(filename):
       i = i.split(',')
       if len(i)>1:
          temp = float(i[1])
-         temp = (temp)/2047
+         temp = (temp)/1023.50
          output.append(temp)
    return output
 
