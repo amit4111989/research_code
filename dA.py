@@ -262,7 +262,7 @@ class dA(object):
         return (cost, updates)
 
 
-def test_dA(learning_rate=0.1, training_epochs=200,
+def test_dA(learning_rate=0.01, training_epochs=15,
             dataset='mnist.pkl.gz',
             batch_size=1, output_folder='dA_plots'):
 
@@ -327,11 +327,11 @@ def test_dA(learning_rate=0.1, training_epochs=200,
         theano_rng=theano_rng,
         input=x,
         n_visible=300,
-        n_hidden=50
+        n_hidden=100
     ) 
 
     cost, updates = da.get_cost_updates(
-        corruption_level=0.3,
+        corruption_level=0,
         learning_rate=learning_rate
     )
 
@@ -417,6 +417,7 @@ def test_dA(learning_rate=0.1, training_epochs=200,
             cost = test_da_real(idx)
             #print ("\n\ncost of V beat %f\n\n"%(numpy.mean(cost)))
             print ("\n\nV beat\n\n")
+	    print cost[0][0]
 	    #cost_high =  [cost[0][i] for i in cost[0].argsort()[-30:][::-1]]
             #cost_low = [cost[0][i] for i in cost[0].argsort()[:30][::-1]]
 	    #print numpy.mean(cost_low)
