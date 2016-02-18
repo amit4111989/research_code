@@ -262,7 +262,7 @@ class dA(object):
         return (cost, updates)
 
 
-def test_dA(learning_rate=0.1, training_epochs=200,
+def test_dA(learning_rate=0.3, training_epochs=500,
             dataset='mnist.pkl.gz',
             batch_size=1, output_folder='dA_plots'):
 
