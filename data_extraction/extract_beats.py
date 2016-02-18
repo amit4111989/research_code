@@ -52,6 +52,11 @@ def clean_signal(
    return ecg_band
 
 
+def shift_offset(ecg):
+   """   Add an offset so that the signal stays within positive values """
+   ecg = [i+3.0 for i in ecg]
+   return ecg
+
 def delete_empty_vals(ecg):
    index_to_delete = []
 
@@ -199,6 +204,10 @@ if __name__ == '__main__':
    #clean noise from signal data
 
    ecg = clean_signal(ecg)
+
+   # raise offset so that values are above 0 (necessary for denosiing autoencoders)
+
+   ecg = shift_offset(ecg)
 
    #extract r-peaks and labels from annotation file for desired beats
 
