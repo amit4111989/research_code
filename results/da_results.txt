@@ -1,0 +1,34 @@
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.801237 | true negative 450 | false positive 0 | positive prediction 1814
+
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.801237 | true negative 450 | false positive 0 | positive prediction 1814
+
+Corruption 0.300000 | epochs 50 | hidden 75 | accuracy 0.806095 | true negative 439 | false positive 0 | positive prediction 1825
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.800353 | true negative 451 | false positive 1 | positive prediction 1812
+
+Corruption 0.300000 | epochs 200 | hidden 75 | accuracy 0.801237 | true negative 449 | false positive 1 | positive prediction 1814
+
+Corruption 0.300000 | epochs 300 | hidden 75 | accuracy 0.796820 | true negative 459 | false positive 1 | positive prediction 1804
+
+Corruption 0.300000 | epochs 400 | hidden 75 | accuracy 0.803445 | true negative 444 | false positive 1 | positive prediction 1819
+
+Corruption 0.300000 | epochs 500 | hidden 75 | accuracy 0.802120 | true negative 447 | false positive 1 | positive prediction 1816
+
+Corruption 0.300000 | epochs 1000 | hidden 75 | accuracy 0.797703 | true negative 457 | false positive 1 | positive prediction 1806
+
+Corruption 0.300000 | epochs 50 | hidden 100 | accuracy 0.804770 | true negative 442 | false positive 0 | positive prediction 1822
+
+Corruption 0.300000 | epochs 100 | hidden 100 | accuracy 0.801237 | true negative 449 | false positive 1 | positive prediction 1814
+
+Corruption 0.300000 | epochs 200 | hidden 100 | accuracy 0.798145 | true negative 456 | false positive 1 | positive prediction 1807
+
+Corruption 0.300000 | epochs 300 | hidden 100 | accuracy 0.795495 | true negative 462 | false positive 1 | positive prediction 1801
+
+Corruption 0.300000 | epochs 400 | hidden 100 | accuracy 0.802562 | true negative 446 | false positive 1 | positive prediction 1817
+
+Corruption 0.300000 | epochs 500 | hidden 100 | accuracy 0.799028 | true negative 453 | false positive 2 | positive prediction 1809
+
+Corruption 0.300000 | epochs 1000 | hidden 100 | accuracy 0.797261 | true negative 457 | false positive 2 | positive prediction 1805
+
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.000000 | true negative 0 | false positive 0 | positive prediction 0
+

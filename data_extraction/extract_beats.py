@@ -40,7 +40,7 @@ def clean_signal(
       # Window size in seconds to use for
       lowfreq=0.5,
       # High frequency of the band pass filter
-      highfreq=45.0,
+      highfreq=15.0,
 ):
 
    # baseline correction and bandpass filter of signals

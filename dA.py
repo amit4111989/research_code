@@ -216,9 +216,12 @@ class dA(object):
         tilde_x =self.get_corrupted_input(self.x, corruption_level)
         y = self.get_hidden_values(tilde_x)
         z = self.get_reconstructed_input(y)
-        #L = T.sqr(self.x-z)
+	#L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
+        
+	L = T.mean(T.sum(T.sqr(self.x-z)))
         #L = self.x * T.log(z) + (1 - self.x) * T.log(1 - z)
         return [z,self.x]
+ 	#return L
 
     def get_hidden_values(self, input):
         """ Computes the values of the hidden layer """
@@ -262,8 +265,8 @@ class dA(object):
         return (cost, updates)
 
 
-def test_dA(learning_rate=0.3, training_epochs=50,
-            dataset='mnist.pkl.gz',
+def test_dA(learning_rate=0.3, training_epochs=50,hidden_units=50,
+            dataset='mnist.pkl.gz',corruption=0.3,
             batch_size=1, output_folder='dA_plots'):
 
     """
@@ -327,11 +330,11 @@ def test_dA(learning_rate=0.3, training_epochs=50,
         theano_rng=theano_rng,
         input=x,
         n_visible=300,
-        n_hidden=50
+        n_hidden=hidden_units
     ) 
 
     cost, updates = da.get_cost_updates(
-        corruption_level=0.3,
+        corruption_level=corruption,
         learning_rate=learning_rate
     )
 
@@ -380,7 +383,7 @@ def test_dA(learning_rate=0.3, training_epochs=50,
     #
     
     cost = da.get_recon_error(
-        corruption_level=0.3,
+        corruption_level=corruption,
     )
 
 
@@ -410,31 +413,45 @@ def test_dA(learning_rate=0.3, training_epochs=50,
     total_n=0
     correct_n = 0
     print (len (test_set_y))
+    positive_prediction = 0
+    true_negative = 0
+    false_positive = 0
 
     for i in xrange(len(test_set_y[:2])):
+	
+	#cost = test_da_real(idx)
+	#if cost>0.2 and not test_set_y[idx]==0:
+	#	positive_prediction+=1
+	#if cost>0.2 and test_set_y[idx]==0:
+	#	true_negative+=1
+	#if cost<0.2 and test_set_y[idx]==0:
+	#	positive_prediction+=1
+	#if cost<0.2 and not test_set_y[idx]==0:
+	#	false_positive+=1
 
         if test_set_y[idx]==1:
             cost = test_da_real(idx)
             #print ("\n\ncost of V beat %f\n\n"%(numpy.mean(cost)))
-            print ("\n\nV beat\n\n")
-	    print cost[0][0]
+        #    print ("\n\nV beat\n\n")
+	#    print cost
 	    #cost_high =  [cost[0][i] for i in cost[0].argsort()[-30:][::-1]]
             #cost_low = [cost[0][i] for i in cost[0].argsort()[:30][::-1]]
 	    #print numpy.mean(cost_low)
 	    #print numpy.mean(numpy.mean(cost_high)+numpy.mean(cost_low))
-	    print ('\n')
+	#    print ('\n')
 	    plt.figure(0)
 	    plt.plot(cost[0][0],color='r')
 	    plt.plot(cost[1][0],color='g')
 	    plt.savefig('v_recon.png')
-	    total_y+=1
+	#   total_y+=1
 
         else:
             cost = test_da_real(idx)
             #print ("cost of N beat %f"%(numpy.mean(cost)))
             #print ("N beat")
 	    #print cost.argsort()[-7:][::-1]
-	    print ("N beat")
+	#    print ("N beat")
+	#    print cost
             #cost_high =  [cost[0][i] for i in cost[0].argsort()[-30:][::-1]]
             #cost_low = [cost[0][i] for i in cost[0].argsort()[:30][::-1]]
 	    #print numpy.mean(cost_low)
@@ -443,7 +460,7 @@ def test_dA(learning_rate=0.3, training_epochs=50,
             plt.plot(cost[0][0],color='y')
             plt.plot(cost[1][0],color='b')
             plt.savefig('n_recon.png')
-	    total_n+=1
+	 #   total_n+=1
 
         idx+=1
     # idx = 0
@@ -457,21 +474,29 @@ def test_dA(learning_rate=0.3, training_epochs=50,
 
     #     idx+=1
 
-    print ("correct y")
+    print ("corect y")
     print (correct_y)
     print ("total y")
     print (total_y)
     print ("correct n")
     print (correct_n)
     print ("total n")
+	
     print (total_n)
     print ("total beats")
     print (idx)
 
-    print (test_set_y)
-
-
-
+    print ("positive prediction")
+    print positive_prediction
+    print ("true negative")
+    print true_negative
+    print ("false positive")
+    print false_positive
+   
+    file = open('results/da_results.txt','a')
+    file.write('Corruption %f | epochs %d | hidden %d | accuracy %f | true negative %d | false positive %d | positive prediction %d'%(corruption,training_epochs, hidden_units, ((positive_prediction*1.00)/idx) , true_negative, false_positive, positive_prediction))
+    file.write('\n\n')
+    file.close()
 
 
 if __name__ == '__main__':
