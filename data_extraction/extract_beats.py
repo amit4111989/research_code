@@ -54,7 +54,7 @@ def clean_signal(
 
 def shift_offset(ecg):
    """   Add an offset so that the signal stays within positive values """
-   ecg = [i+0.3 for i in ecg]
+   ecg = [i+0.003 for i in ecg]
    return ecg
 
 def delete_empty_vals(ecg):

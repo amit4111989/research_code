@@ -262,7 +262,7 @@ class dA(object):
         return (cost, updates)
 
 
-def test_dA(learning_rate=0.01, training_epochs=15,
+def test_dA(learning_rate=0.001, training_epochs=50,
             dataset='mnist.pkl.gz',
             batch_size=1, output_folder='dA_plots'):
 
@@ -327,11 +327,11 @@ def test_dA(learning_rate=0.01, training_epochs=15,
         theano_rng=theano_rng,
         input=x,
         n_visible=300,
-        n_hidden=100
+        n_hidden=50
     ) 
 
     cost, updates = da.get_cost_updates(
-        corruption_level=0,
+        corruption_level=0.3,
         learning_rate=learning_rate
     )
 
