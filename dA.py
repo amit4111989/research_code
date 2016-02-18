@@ -241,14 +241,14 @@ class dA(object):
 	    # note : we sum over the size of a datapoint; if we are using
             #        minibatches, L will be a vector, with one entry per
 	    #        example in minibatch
-        L = T.mean(T.sum(T.sqr(self.x-z)))
-        #L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
+        #L = T.mean(T.sum(T.sqr(self.x-z)))
+        L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
 
             # note : L is now a vector, where each element is the
             #        cross-entropy cost of the reconstruction of the
             #        corresponding exam
 
-        cost = L
+        cost = T.mean(L)
 	#cost = L
             # compute the gradients of the cost of the `dA` with respect
             # to its parameters
@@ -262,7 +262,7 @@ class dA(object):
         return (cost, updates)
 
 
-def test_dA(learning_rate=0.001, training_epochs=1000,
+def test_dA(learning_rate=0.1, training_epochs=200,
             dataset='mnist.pkl.gz',
             batch_size=1, output_folder='dA_plots'):
 
