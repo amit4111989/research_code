@@ -40,7 +40,7 @@ import theano
 import theano.tensor as T
 import cPickle as cp
 from theano.tensor.shared_randomstreams import RandomStreams
-
+import matplotlib.pyplot as plt
 from logistic_sgd import load_data
 
 class dA(object):
@@ -211,14 +211,14 @@ class dA(object):
                                         p=1 - corruption_level,
                                         dtype=theano.config.floatX) * input
 
-    def get_recon_error(self):
+    def get_recon_error(self,corruption_level):
         """ Compute reconstruction error for anomaly score"""
-
-        y = self.get_hidden_values(self.x)
+        tilde_x =self.get_corrupted_input(self.x, corruption_level)
+        y = self.get_hidden_values(tilde_x)
         z = self.get_reconstructed_input(y)
-        #L = T.sqrt(T.mean(T.sqr(self.x-z)))
-        L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
-        return T.mean(L)
+        #L = T.sqr(self.x-z)
+        #L = self.x * T.log(z) + (1 - self.x) * T.log(1 - z)
+        return [z,self.x]
 
     def get_hidden_values(self, input):
         """ Computes the values of the hidden layer """
@@ -241,14 +241,15 @@ class dA(object):
 	    # note : we sum over the size of a datapoint; if we are using
             #        minibatches, L will be a vector, with one entry per
 	    #        example in minibatch
-        #L = T.sqrt(T.mean(T.sqr(self.x-z)))
-        L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
+        L = T.mean(T.sum(T.sqr(self.x-z)))
+        #L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
 
             # note : L is now a vector, where each element is the
             #        cross-entropy cost of the reconstruction of the
             #        corresponding exam
 
-        cost = T.mean(L)
+        cost = L
+	#cost = L
             # compute the gradients of the cost of the `dA` with respect
             # to its parameters
         gparams = T.grad(cost, self.params)
@@ -261,7 +262,7 @@ class dA(object):
         return (cost, updates)
 
 
-def test_dA(learning_rate=0.001, training_epochs=1,
+def test_dA(learning_rate=0.001, training_epochs=100,
             dataset='mnist.pkl.gz',
             batch_size=1, output_folder='dA_plots'):
 
@@ -281,9 +282,9 @@ def test_dA(learning_rate=0.001, training_epochs=1,
     """
     datasets = load_data()
     train_set_x, train_set_y = datasets[0]
-    random_data = theano.shared(numpy.asarray(numpy.random.uniform(0.3,0.4,(10000,30)),
-                                               dtype=theano.config.floatX),
-                                  borrow=True)
+    #random_data = theano.shared(numpy.asarray(numpy.random.uniform(0.3,0.4,(10000,30)),
+     #                                          dtype=theano.config.floatX),
+      #                            borrow=True)
     # file = open('new_train_set.p','r')
     # train_set_x = cp.load(file)
     # file.close()
@@ -327,7 +328,7 @@ def test_dA(learning_rate=0.001, training_epochs=1,
         input=x,
         n_visible=300,
         n_hidden=50
-    )
+    ) 
 
     cost, updates = da.get_cost_updates(
         corruption_level=0.3,
@@ -377,11 +378,11 @@ def test_dA(learning_rate=0.001, training_epochs=1,
 
     # os.chdir('../')
     #
-
-    cost, updates = da.get_cost_updates(
+    
+    cost = da.get_recon_error(
         corruption_level=0.3,
-        learning_rate=learning_rate
     )
+
 
     # test_da = theano.function(
     #     [index],
@@ -399,7 +400,7 @@ def test_dA(learning_rate=0.001, training_epochs=1,
         }
     )
 
-    f = open('data_extraction/anomaly_tester/test_set.p','r')
+    f = open('data_extraction/testing_data/test_set.p','r')
     data_set = cp.load(f)
     f.close()
     test_set_y = data_set[1]
@@ -410,17 +411,38 @@ def test_dA(learning_rate=0.001, training_epochs=1,
     correct_n = 0
     print (len (test_set_y))
 
-    for i in xrange(len(test_set_y)):
+    for i in xrange(len(test_set_y[:2])):
 
         if test_set_y[idx]==1:
             cost = test_da_real(idx)
-            print ("\n\ncost of V beat %f\n\n"%(numpy.mean(cost)))
-            total_y+=1
+            #print ("\n\ncost of V beat %f\n\n"%(numpy.mean(cost)))
+            print ("\n\nV beat\n\n")
+	    #cost_high =  [cost[0][i] for i in cost[0].argsort()[-30:][::-1]]
+            #cost_low = [cost[0][i] for i in cost[0].argsort()[:30][::-1]]
+	    #print numpy.mean(cost_low)
+	    #print numpy.mean(numpy.mean(cost_high)+numpy.mean(cost_low))
+	    print ('\n')
+	    plt.figure(0)
+	    plt.plot(cost[0][0],color='r')
+	    plt.plot(cost[1][0],color='g')
+	    plt.savefig('v_recon.png')
+	    total_y+=1
 
         else:
             cost = test_da_real(idx)
-            print ("cost of N beat %f"%(numpy.mean(cost)))
-            total_n+=1
+            #print ("cost of N beat %f"%(numpy.mean(cost)))
+            #print ("N beat")
+	    #print cost.argsort()[-7:][::-1]
+	    print ("N beat")
+            #cost_high =  [cost[0][i] for i in cost[0].argsort()[-30:][::-1]]
+            #cost_low = [cost[0][i] for i in cost[0].argsort()[:30][::-1]]
+	    #print numpy.mean(cost_low)
+            #print numpy.mean(numpy.mean(cost_high)+numpy.mean(cost_low))
+	    plt.figure(0)
+            plt.plot(cost[0][0],color='r')
+            plt.plot(cost[1][0],color='g')
+            plt.savefig('n_recon.png')
+	    total_n+=1
 
         idx+=1
 
