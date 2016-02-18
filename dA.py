@@ -327,7 +327,7 @@ def test_dA(learning_rate=0.01, training_epochs=200,
         theano_rng=theano_rng,
         input=x,
         n_visible=300,
-        n_hidden=100
+        n_hidden=200
     ) 
 
     cost, updates = da.get_cost_updates(
