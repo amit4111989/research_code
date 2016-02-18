@@ -439,8 +439,8 @@ def test_dA(learning_rate=0.001, training_epochs=100,
 	    #print numpy.mean(cost_low)
             #print numpy.mean(numpy.mean(cost_high)+numpy.mean(cost_low))
 	    plt.figure(1)
-            plt.plot(cost[0][0],color='r')
-            plt.plot(cost[1][0],color='g')
+            plt.plot(cost[0][0],color='y')
+            plt.plot(cost[1][0],color='b')
             plt.savefig('n_recon.png')
 	    total_n+=1
 
