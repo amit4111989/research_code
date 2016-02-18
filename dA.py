@@ -438,7 +438,7 @@ def test_dA(learning_rate=0.001, training_epochs=100,
             #cost_low = [cost[0][i] for i in cost[0].argsort()[:30][::-1]]
 	    #print numpy.mean(cost_low)
             #print numpy.mean(numpy.mean(cost_high)+numpy.mean(cost_low))
-	    plt.figure(0)
+	    plt.figure(1)
             plt.plot(cost[0][0],color='r')
             plt.plot(cost[1][0],color='g')
             plt.savefig('n_recon.png')
