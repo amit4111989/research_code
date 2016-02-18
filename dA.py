@@ -417,7 +417,7 @@ def test_dA(learning_rate=0.3, training_epochs=50,hidden_units=50,
     true_negative = 0
     false_positive = 0
 
-    for i in xrange(len(test_set_y[:2])):
+    for i in xrange(len(test_set_y)):
 	
 	#cost = test_da_real(idx)
 	#if cost>0.2 and not test_set_y[idx]==0:
@@ -439,10 +439,10 @@ def test_dA(learning_rate=0.3, training_epochs=50,hidden_units=50,
 	    #print numpy.mean(cost_low)
 	    #print numpy.mean(numpy.mean(cost_high)+numpy.mean(cost_low))
 	#    print ('\n')
-	    plt.figure(0)
+	    plt.figure(idx)
 	    plt.plot(cost[0][0],color='r')
 	    plt.plot(cost[1][0],color='g')
-	    plt.savefig('v_recon.png')
+	    plt.savefig('v_recon_%d.png'%(idx))
 	#   total_y+=1
 
         else:
@@ -456,10 +456,10 @@ def test_dA(learning_rate=0.3, training_epochs=50,hidden_units=50,
             #cost_low = [cost[0][i] for i in cost[0].argsort()[:30][::-1]]
 	    #print numpy.mean(cost_low)
             #print numpy.mean(numpy.mean(cost_high)+numpy.mean(cost_low))
-	    plt.figure(1)
-            plt.plot(cost[0][0],color='y')
-            plt.plot(cost[1][0],color='b')
-            plt.savefig('n_recon.png')
+	    #plt.figure(1)
+            #plt.plot(cost[0][0],color='y')
+            #plt.plot(cost[1][0],color='b')
+            #plt.savefig('n_recon.png')
 	 #   total_n+=1
 
         idx+=1
