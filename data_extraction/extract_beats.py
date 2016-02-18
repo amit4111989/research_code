@@ -40,7 +40,7 @@ def clean_signal(
       # Window size in seconds to use for
       lowfreq=0.5,
       # High frequency of the band pass filter
-      highfreq=100.0,
+      highfreq=45.0,
 ):
 
    # baseline correction and bandpass filter of signals
@@ -172,7 +172,7 @@ def extract_features(ecg,beat_index):
       output.append(ecg[beat_index-index])
 
    #200 samples after rpeak
-   for i in xrange(201):
+   for i in xrange(101):
       if not (beat_index+i) == len(ecg):
          output.append(ecg[beat_index+i])
       else:

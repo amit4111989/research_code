@@ -329,7 +329,7 @@ def test_dA(learning_rate=0.3, training_epochs=50,hidden_units=50,
         numpy_rng=rng,
         theano_rng=theano_rng,
         input=x,
-        n_visible=300,
+        n_visible=200,
         n_hidden=hidden_units
     ) 
 
