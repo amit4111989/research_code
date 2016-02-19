@@ -677,9 +677,11 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
 
     plt.figure(0)
     #plt.plot(normal_cost,color='r')
-    y = numpy.arange(2265)
-    print (len(y[1:]))
+    y = [i for i in xrange(2265)]
+    y = y[1:]
+    print (len(y))
     print (normal_cost)
-    plt.hist(normal_cost,color='b')
+    plt.plot(normal_cost)
+    plt.gca().invert_yaxis()
     plt.savefig('recon_error_distribution.png')
     
