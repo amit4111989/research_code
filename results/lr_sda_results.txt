@@ -204,3 +204,591 @@ Min abnormal cost 0.376644082715 | Max abnormal cost 7.77303871854 | Average abn
 
  Min normal cost 0.236421231483 | Max normal cost 10.5169327358 | Average normal cost 0.623134311681 | Standard deviation in normal cost 0.735096828403
 
+Corruption 0.300000 | epochs 15 | hidden 75 | accuracy 0.850265 | true negative 324| false positive 15 | positive prediction 1925 | patience 1
+
+Min abnormal cost 0.42903965158 | Max abnormal cost 7.65487420982 | Average abnormal cost 0.953371051639 | Standard deviation in abnormal cost 1.23506706222
+
+ Min normal cost 0.240362658247 | Max normal cost 10.5189916806 | Average normal cost 0.563182729858 | Standard deviation in normal cost 0.622790436558
+
+Corruption 0.300000 | epochs 15 | hidden 75 | accuracy 0.756184 | true negative 548| false positive 4 | positive prediction 1712 | patience 1
+
+Min abnormal cost 0.42903965158 | Max abnormal cost 7.65487420982 | Average abnormal cost 0.953371051639 | Standard deviation in abnormal cost 1.23506706222
+
+ Min normal cost 0.240362658247 | Max normal cost 10.5189916806 | Average normal cost 0.563182729858 | Standard deviation in normal cost 0.622790436558
+
+Corruption 0.300000 | epochs 50 | hidden 75 | accuracy 0.893993 | true negative 213| false positive 27 | positive prediction 2024 | patience 1
+
+Min abnormal cost 0.256980434869 | Max abnormal cost 7.3023296038 | Average abnormal cost 0.706526295724 | Standard deviation in abnormal cost 1.20476008207
+
+ Min normal cost 0.123969387449 | Max normal cost 9.80993076435 | Average normal cost 0.348427800373 | Standard deviation in normal cost 0.571144856982
+
+Corruption 0.300000 | epochs 50 | hidden 75 | accuracy 0.840989 | true negative 346| false positive 14 | positive prediction 1904 | patience 1
+
+Min abnormal cost 0.256980434869 | Max abnormal cost 7.3023296038 | Average abnormal cost 0.706526295724 | Standard deviation in abnormal cost 1.20476008207
+
+ Min normal cost 0.123969387449 | Max normal cost 9.80993076435 | Average normal cost 0.348427800373 | Standard deviation in normal cost 0.571144856982
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.855124 | true negative 304| false positive 24 | positive prediction 1936 | patience 1
+
+Min abnormal cost 0.199027412914 | Max abnormal cost 7.09974726946 | Average abnormal cost 0.619771671023 | Standard deviation in abnormal cost 1.18301917354
+
+ Min normal cost 0.084243949901 | Max normal cost 9.56150066512 | Average normal cost 0.280424642186 | Standard deviation in normal cost 0.554627473225
+
+Corruption 0.300000 | epochs 150 | hidden 75 | accuracy 0.863958 | true negative 283| false positive 25 | positive prediction 1956 | patience 1
+
+Min abnormal cost 0.166501968013 | Max abnormal cost 7.03369317733 | Average abnormal cost 0.577476623791 | Standard deviation in abnormal cost 1.17722959845
+
+ Min normal cost 0.0619398998508 | Max normal cost 9.54017068684 | Average normal cost 0.24451332239 | Standard deviation in normal cost 0.551515955662
+
+Corruption 0.300000 | epochs 150 | hidden 75 | accuracy 0.830830 | true negative 374| false positive 9 | positive prediction 1881 | patience 1
+
+Min abnormal cost 0.166501968013 | Max abnormal cost 7.03369317733 | Average abnormal cost 0.577476623791 | Standard deviation in abnormal cost 1.17722959845
+
+ Min normal cost 0.0619398998508 | Max normal cost 9.54017068684 | Average normal cost 0.24451332239 | Standard deviation in normal cost 0.551515955662
+
+Corruption 0.300000 | epochs 150 | hidden 75 | accuracy 0.854240 | true negative 306| false positive 24 | positive prediction 1934 | patience 1
+
+Min abnormal cost 0.166501968013 | Max abnormal cost 7.03369317733 | Average abnormal cost 0.577476623791 | Standard deviation in abnormal cost 1.17722959845
+
+ Min normal cost 0.0619398998508 | Max normal cost 9.54017068684 | Average normal cost 0.24451332239 | Standard deviation in normal cost 0.551515955662
+
+Corruption 0.300000 | epochs 150 | hidden 75 | accuracy 0.015018 | true negative 2230| false positive 0 | positive prediction 34 | patience 1
+
+Min abnormal cost 0.466438286253 | Max abnormal cost 7.56390431496 | Average abnormal cost 0.996826466922 | Standard deviation in abnormal cost 1.21180889502
+
+ Min normal cost 0.27444178335 | Max normal cost 10.5075069306 | Average normal cost 0.623017858585 | Standard deviation in normal cost 0.61952104217
+
+Corruption 0.300000 | epochs 150 | hidden 75 | accuracy 0.838339 | true negative 351| false positive 15 | positive prediction 1898 | patience 1
+
+Min abnormal cost 0.466438286253 | Max abnormal cost 7.56390431496 | Average abnormal cost 0.996826466922 | Standard deviation in abnormal cost 1.21180889502
+
+ Min normal cost 0.27444178335 | Max normal cost 10.5075069306 | Average normal cost 0.623017858585 | Standard deviation in normal cost 0.61952104217
+
+Corruption 0.300000 | epochs 100 | hidden 50 | accuracy 0.841431 | true negative 340| false positive 19 | positive prediction 1905 | patience 1
+
+Min abnormal cost 0.418596517749 | Max abnormal cost 7.51140962594 | Average abnormal cost 0.936740584853 | Standard deviation in abnormal cost 1.21515984211
+
+ Min normal cost 0.241311323559 | Max normal cost 10.7867552779 | Average normal cost 0.600321845208 | Standard deviation in normal cost 0.619174344642
+
+Corruption 0.300000 | epochs 100 | hidden 50 | accuracy 0.852915 | true negative 309| false positive 24 | positive prediction 1931 | patience 1
+
+Min abnormal cost 0.418596517749 | Max abnormal cost 7.51140962594 | Average abnormal cost 0.936740584853 | Standard deviation in abnormal cost 1.21515984211
+
+ Min normal cost 0.241311323559 | Max normal cost 10.7867552779 | Average normal cost 0.600321845208 | Standard deviation in normal cost 0.619174344642
+
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.141343 | true negative 1943| false positive 1 | positive prediction 320 | patience 10
+
+Min abnormal cost 0.695688773705 | Max abnormal cost 7.89196535338 | Average abnormal cost 1.23367509341 | Standard deviation in abnormal cost 1.21862105641
+
+ Min normal cost 0.507162983369 | Max normal cost 10.7851308443 | Average normal cost 0.971343839737 | Standard deviation in normal cost 0.615979466502
+
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.756625 | true negative 533| false positive 18 | positive prediction 1713 | patience 10
+
+Min abnormal cost 0.695688773705 | Max abnormal cost 7.89196535338 | Average abnormal cost 1.23367509341 | Standard deviation in abnormal cost 1.21862105641
+
+ Min normal cost 0.507162983369 | Max normal cost 10.7851308443 | Average normal cost 0.971343839737 | Standard deviation in normal cost 0.615979466502
+
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.764576 | true negative 515| false positive 18 | positive prediction 1731 | patience 1
+
+Min abnormal cost 0.668608809459 | Max abnormal cost 11.5624970546 | Average abnormal cost 1.42148979519 | Standard deviation in abnormal cost 1.84480214497
+
+ Min normal cost 0.449738506881 | Max normal cost 14.6547413669 | Average normal cost 1.02585464787 | Standard deviation in normal cost 0.867044734762
+
+Corruption 0.300000 | epochs 100 | hidden 50 | accuracy 0.894435 | true negative 210| false positive 29 | positive prediction 2025 | patience 1
+
+Min abnormal cost 0.321831421036 | Max abnormal cost 11.1918837995 | Average abnormal cost 1.08722424176 | Standard deviation in abnormal cost 1.8513141898
+
+ Min normal cost 0.159855950972 | Max normal cost 14.6995577412 | Average normal cost 0.58307417261 | Standard deviation in normal cost 0.879435238623
+
+Corruption 0.300000 | epochs 100 | hidden 50 | accuracy 0.845848 | true negative 332| false positive 17 | positive prediction 1915 | patience 1
+
+Min abnormal cost 0.321831421036 | Max abnormal cost 11.1918837995 | Average abnormal cost 1.08722424176 | Standard deviation in abnormal cost 1.8513141898
+
+ Min normal cost 0.159855950972 | Max normal cost 14.6995577412 | Average normal cost 0.58307417261 | Standard deviation in normal cost 0.879435238623
+
+Corruption 0.300000 | epochs 100 | hidden 20 | accuracy 0.714223 | true negative 628| false positive 19 | positive prediction 1617 | patience 1
+
+Min abnormal cost 0.391027916748 | Max abnormal cost 11.3618494229 | Average abnormal cost 1.10814809632 | Standard deviation in abnormal cost 1.8730151394
+
+ Min normal cost 0.27533424929 | Max normal cost 14.3496394347 | Average normal cost 0.742242126908 | Standard deviation in normal cost 0.899135169018
+
+Corruption 0.300000 | epochs 10 | hidden 20 | accuracy 0.886926 | true negative 228| false positive 28 | positive prediction 2008 | patience 1
+
+Min abnormal cost 0.125286464304 | Max abnormal cost 11.7047701169 | Average abnormal cost 0.781330448483 | Standard deviation in abnormal cost 1.99521627812
+
+ Min normal cost 0.00392224876819 | Max normal cost 10.6199257746 | Average normal cost 0.239685671026 | Standard deviation in normal cost 0.747254536308
+
+Corruption 0.300000 | epochs 10 | hidden 20 | accuracy 0.835247 | true negative 353| false positive 20 | positive prediction 1891 | patience 1
+
+Min abnormal cost 0.125286464304 | Max abnormal cost 11.7047701169 | Average abnormal cost 0.781330448483 | Standard deviation in abnormal cost 1.99521627812
+
+ Min normal cost 0.00392224876819 | Max normal cost 10.6199257746 | Average normal cost 0.239685671026 | Standard deviation in normal cost 0.747254536308
+
+Corruption 0.300000 | epochs 20 | hidden 20 | accuracy 0.836131 | true negative 351| false positive 20 | positive prediction 1893 | patience 1
+
+Min abnormal cost 0.111813478548 | Max abnormal cost 11.5799282544 | Average abnormal cost 0.758019645671 | Standard deviation in abnormal cost 1.97841300347
+
+ Min normal cost 0.00286213562441 | Max normal cost 10.199506647 | Average normal cost 0.230279779376 | Standard deviation in normal cost 0.719868746074
+
+Corruption 0.300000 | epochs 20 | hidden 20 | accuracy 0.820230 | true negative 401| false positive 6 | positive prediction 1857 | patience 1
+
+Min abnormal cost 0.111813478548 | Max abnormal cost 11.5799282544 | Average abnormal cost 0.758019645671 | Standard deviation in abnormal cost 1.97841300347
+
+ Min normal cost 0.00286213562441 | Max normal cost 10.199506647 | Average normal cost 0.230279779376 | Standard deviation in normal cost 0.719868746074
+
+Corruption 0.300000 | epochs 30 | hidden 20 | accuracy 0.813163 | true negative 409| false positive 14 | positive prediction 1841 | patience 1
+
+Min abnormal cost 0.0998353681592 | Max abnormal cost 11.225503866 | Average abnormal cost 0.736388663509 | Standard deviation in abnormal cost 1.92395826949
+
+ Min normal cost 0.00231738675849 | Max normal cost 9.94887528164 | Average normal cost 0.228639870897 | Standard deviation in normal cost 0.705911313713
+
+Corruption 0.400000 | epochs 30 | hidden 20 | accuracy 0.818463 | true negative 401| false positive 10 | positive prediction 1853 | patience 1
+
+Min abnormal cost 0.148946538006 | Max abnormal cost 11.4380411913 | Average abnormal cost 0.805475518393 | Standard deviation in abnormal cost 1.9429636558
+
+ Min normal cost 0.01301937695 | Max normal cost 11.5527218769 | Average normal cost 0.272528552078 | Standard deviation in normal cost 0.779448029488
+
+Corruption 0.400000 | epochs 30 | hidden 20 | accuracy 0.832597 | true negative 359| false positive 20 | positive prediction 1885 | patience 1
+
+Min abnormal cost 0.148946538006 | Max abnormal cost 11.4380411913 | Average abnormal cost 0.805475518393 | Standard deviation in abnormal cost 1.9429636558
+
+ Min normal cost 0.01301937695 | Max normal cost 11.5527218769 | Average normal cost 0.272528552078 | Standard deviation in normal cost 0.779448029488
+
+Corruption 0.400000 | epochs 15 | hidden 20 | accuracy 0.839223 | true negative 342| false positive 22 | positive prediction 1900 | patience 1
+
+Min abnormal cost 0.124276758472 | Max abnormal cost 11.7654507398 | Average abnormal cost 0.784495951113 | Standard deviation in abnormal cost 2.00920102541
+
+ Min normal cost 0.00447479018675 | Max normal cost 10.5830102001 | Average normal cost 0.244087407851 | Standard deviation in normal cost 0.751056970224
+
+Corruption 0.400000 | epochs 30 | hidden 20 | accuracy 0.784894 | true negative 486| false positive 1 | positive prediction 1777 | patience 1
+
+Min abnormal cost 0.225765236192 | Max abnormal cost 10.9300975596 | Average abnormal cost 0.915660059444 | Standard deviation in abnormal cost 1.84602616136
+
+ Min normal cost 0.0594795035943 | Max normal cost 12.7243462296 | Average normal cost 0.397036524714 | Standard deviation in normal cost 0.819725655301
+
+Corruption 0.400000 | epochs 30 | hidden 20 | accuracy 0.833039 | true negative 359| false positive 19 | positive prediction 1886 | patience 1
+
+Min abnormal cost 0.225765236192 | Max abnormal cost 10.9300975596 | Average abnormal cost 0.915660059444 | Standard deviation in abnormal cost 1.84602616136
+
+ Min normal cost 0.0594795035943 | Max normal cost 12.7243462296 | Average normal cost 0.397036524714 | Standard deviation in normal cost 0.819725655301
+
+Corruption 0.500000 | epochs 15 | hidden 20 | accuracy 0.850265 | true negative 315| false positive 24 | positive prediction 1925 | patience 1
+
+Min abnormal cost 0.134817349794 | Max abnormal cost 11.6868223987 | Average abnormal cost 0.798474163895 | Standard deviation in abnormal cost 1.99447730025
+
+ Min normal cost 0.00855227543664 | Max normal cost 10.8867754685 | Average normal cost 0.264388193016 | Standard deviation in normal cost 0.773450775234
+
+Corruption 0.500000 | epochs 15 | hidden 20 | accuracy 0.832597 | true negative 359| false positive 20 | positive prediction 1885 | patience 1
+
+Min abnormal cost 0.134817349794 | Max abnormal cost 11.6868223987 | Average abnormal cost 0.798474163895 | Standard deviation in abnormal cost 1.99447730025
+
+ Min normal cost 0.00855227543664 | Max normal cost 10.8867754685 | Average normal cost 0.264388193016 | Standard deviation in normal cost 0.773450775234
+
+Corruption 0.500000 | epochs 15 | hidden 20 | accuracy 0.824205 | true negative 394| false positive 4 | positive prediction 1866 | patience 1
+
+Min abnormal cost 0.20453207342 | Max abnormal cost 20.4423741262 | Average abnormal cost 1.27317078285 | Standard deviation in abnormal cost 3.4447172683
+
+ Min normal cost 0.0112977943203 | Max normal cost 19.2731997067 | Average normal cost 0.383849788127 | Standard deviation in normal cost 1.20968775129
+
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.791961 | true negative 471| false positive 0 | positive prediction 1793 | patience 1
+
+Min abnormal cost 0.246551964566 | Max abnormal cost 20.5555109933 | Average abnormal cost 1.30846035506 | Standard deviation in abnormal cost 3.46374067275
+
+ Min normal cost 0.0403801099719 | Max normal cost 17.7780309785 | Average normal cost 0.415350129343 | Standard deviation in normal cost 1.10932667231
+
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.840548 | true negative 346| false positive 15 | positive prediction 1903 | patience 10
+
+Min abnormal cost 0.250969128579 | Max abnormal cost 20.5298646464 | Average abnormal cost 1.31172453896 | Standard deviation in abnormal cost 3.45858860546
+
+ Min normal cost 0.0385866430189 | Max normal cost 17.649588478 | Average normal cost 0.414799244139 | Standard deviation in normal cost 1.10334721457
+
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.840548 | true negative 346| false positive 15 | positive prediction 1903 | patience 10
+
+Min abnormal cost 0.250969128579 | Max abnormal cost 20.5298646464 | Average abnormal cost 1.31172453896 | Standard deviation in abnormal cost 3.45858860546
+
+ Min normal cost 0.0385866430189 | Max normal cost 17.649588478 | Average normal cost 0.414799244139 | Standard deviation in normal cost 1.10334721457
+
+Corruption 0.300000 | epochs 15 | hidden 75 | accuracy 0.836131 | true negative 365| false positive 6 | positive prediction 1893 | patience 10
+
+Min abnormal cost 0.145848620415 | Max abnormal cost 17.573378851 | Average abnormal cost 1.07164343605 | Standard deviation in abnormal cost 2.97733214283
+
+ Min normal cost 0.00479368985712 | Max normal cost 12.9006648635 | Average normal cost 0.26545518774 | Standard deviation in normal cost 0.868445385158
+
+Corruption 0.300000 | epochs 15 | hidden 75 | accuracy 0.841431 | true negative 343| false positive 16 | positive prediction 1905 | patience 10
+
+Min abnormal cost 0.145848620415 | Max abnormal cost 17.573378851 | Average abnormal cost 1.07164343605 | Standard deviation in abnormal cost 2.97733214283
+
+ Min normal cost 0.00479368985712 | Max normal cost 12.9006648635 | Average normal cost 0.26545518774 | Standard deviation in normal cost 0.868445385158
+
+Corruption 0.300000 | epochs 50 | hidden 75 | accuracy 0.840989 | true negative 357| false positive 3 | positive prediction 1904 | patience 10
+
+Min abnormal cost 0.167235480861 | Max abnormal cost 14.1596818738 | Average abnormal cost 0.97489229163 | Standard deviation in abnormal cost 2.41374139072
+
+ Min normal cost 0.00215832483143 | Max normal cost 11.9937827127 | Average normal cost 0.235361675506 | Standard deviation in normal cost 0.788979266996
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.838339 | true negative 364| false positive 2 | positive prediction 1898 | patience 10
+
+Min abnormal cost 0.16810590689 | Max abnormal cost 12.7978398624 | Average abnormal cost 0.928603852643 | Standard deviation in abnormal cost 2.1940092682
+
+ Min normal cost 0.00152990311768 | Max normal cost 12.1213017132 | Average normal cost 0.234697755995 | Standard deviation in normal cost 0.782061198708
+
+Corruption 0.300000 | epochs 200 | hidden 75 | accuracy 0.846290 | true negative 345| false positive 3 | positive prediction 1916 | patience 10
+
+Min abnormal cost 0.164602776511 | Max abnormal cost 13.3900041716 | Average abnormal cost 0.924643033771 | Standard deviation in abnormal cost 2.28017315473
+
+ Min normal cost 0.00155856963241 | Max normal cost 12.0043440054 | Average normal cost 0.226533357004 | Standard deviation in normal cost 0.780376060013
+
+Corruption 0.300000 | epochs 500 | hidden 75 | accuracy 0.848940 | true negative 339| false positive 3 | positive prediction 1922 | patience 10
+
+Min abnormal cost 0.182549136548 | Max abnormal cost 14.180834392 | Average abnormal cost 0.93897750098 | Standard deviation in abnormal cost 2.39021422933
+
+ Min normal cost 0.00163423912425 | Max normal cost 13.1011280028 | Average normal cost 0.235466361349 | Standard deviation in normal cost 0.831274972275
+
+Corruption 0.300000 | epochs 150 | hidden 75 | accuracy 0.840989 | true negative 359| false positive 1 | positive prediction 1904 | patience 10
+
+Min abnormal cost 0.172227850911 | Max abnormal cost 15.3143967413 | Average abnormal cost 1.00100216155 | Standard deviation in abnormal cost 2.58534570338
+
+ Min normal cost 0.00229875297373 | Max normal cost 14.0565475435 | Average normal cost 0.233392431708 | Standard deviation in normal cost 0.80785326298
+
+Corruption 0.300000 | epochs 150 | hidden 75 | accuracy 0.836131 | true negative 370| false positive 1 | positive prediction 1893 | patience 10
+
+Min abnormal cost 0.186924433191 | Max abnormal cost 13.5861257919 | Average abnormal cost 0.967326408695 | Standard deviation in abnormal cost 2.30430659002
+
+ Min normal cost 0.00219087900874 | Max normal cost 16.3954910547 | Average normal cost 0.254849429351 | Standard deviation in normal cost 0.887978846857
+
+Corruption 0.300000 | epochs 50 | hidden 75 | accuracy 0.837014 | true negative 368| false positive 1 | positive prediction 1895 | patience 10
+
+Min abnormal cost 0.181096108847 | Max abnormal cost 14.5333276592 | Average abnormal cost 1.01916738445 | Standard deviation in abnormal cost 2.47042320952
+
+ Min normal cost 0.00199744429902 | Max normal cost 16.3884573041 | Average normal cost 0.258405874977 | Standard deviation in normal cost 0.893416497029
+
+Corruption 0.300000 | epochs 50 | hidden 75 | accuracy 0.828180 | true negative 386| false positive 3 | positive prediction 1875 | patience 10
+
+Min abnormal cost 0.174327340392 | Max abnormal cost 15.821497946 | Average abnormal cost 1.01669707322 | Standard deviation in abnormal cost 2.680890798
+
+ Min normal cost 0.00411719122275 | Max normal cost 14.5086630984 | Average normal cost 0.261723748686 | Standard deviation in normal cost 0.827864883286
+
+Corruption 0.300000 | epochs 50 | hidden 75 | accuracy 0.840548 | true negative 343| false positive 18 | positive prediction 1903 | patience 10
+
+Min abnormal cost 0.174327340392 | Max abnormal cost 15.821497946 | Average abnormal cost 1.01669707322 | Standard deviation in abnormal cost 2.680890798
+
+ Min normal cost 0.00411719122275 | Max normal cost 14.5086630984 | Average normal cost 0.261723748686 | Standard deviation in normal cost 0.827864883286
+
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.836131 | true negative 369| false positive 2 | positive prediction 1893 | patience 1
+
+Min abnormal cost 0.168873748138 | Max abnormal cost 14.8054418933 | Average abnormal cost 0.992328960579 | Standard deviation in abnormal cost 2.51896896836
+
+ Min normal cost 0.00183030399578 | Max normal cost 13.4058895473 | Average normal cost 0.249422126416 | Standard deviation in normal cost 0.821119351228
+
+Corruption 0.300000 | epochs 50 | hidden 400 | accuracy 0.843640 | true negative 353| false positive 1 | positive prediction 1910 | patience 1
+
+Min abnormal cost 0.17840725108 | Max abnormal cost 14.578049876 | Average abnormal cost 0.961825262017 | Standard deviation in abnormal cost 2.45297024124
+
+ Min normal cost 0.00241705932321 | Max normal cost 16.3971805487 | Average normal cost 0.242724564858 | Standard deviation in normal cost 0.857698799711
+
+Corruption 0.300000 | epochs 50 | hidden 400 | accuracy 0.837898 | true negative 366| false positive 1 | positive prediction 1897 | patience 1
+
+Min abnormal cost 0.18009781039 | Max abnormal cost 19.2470400224 | Average abnormal cost 1.16178966465 | Standard deviation in abnormal cost 3.25263418947
+
+ Min normal cost 0.00183773552488 | Max normal cost 16.3972027515 | Average normal cost 0.271051777097 | Standard deviation in normal cost 0.955966771756
+
+Corruption 0.300000 | epochs 50 | hidden 500 | accuracy 0.842756 | true negative 348| false positive 8 | positive prediction 1908 | patience 1
+
+Min abnormal cost 0.157584527658 | Max abnormal cost 15.9245951737 | Average abnormal cost 0.974601413537 | Standard deviation in abnormal cost 2.6824816935
+
+ Min normal cost 0.00243839574334 | Max normal cost 16.3968349282 | Average normal cost 0.245123064529 | Standard deviation in normal cost 0.850978734855
+
+Corruption 0.100000 | epochs 50 | hidden 400 | accuracy 0.406802 | true negative 1343| false positive 0 | positive prediction 921 | patience 1
+
+Min abnormal cost 0.233864551048 | Max abnormal cost 11.5898895807 | Average abnormal cost 1.08741351331 | Standard deviation in abnormal cost 1.92215089277
+
+ Min normal cost 0.0331684363541 | Max normal cost 16.3972008972 | Average normal cost 0.427081787063 | Standard deviation in normal cost 0.84972758748
+
+Corruption 0.100000 | epochs 50 | hidden 400 | accuracy 0.849823 | true negative 328| false positive 12 | positive prediction 1924 | patience 1
+
+Min abnormal cost 0.233864551048 | Max abnormal cost 11.5898895807 | Average abnormal cost 1.08741351331 | Standard deviation in abnormal cost 1.92215089277
+
+ Min normal cost 0.0331684363541 | Max normal cost 16.3972008972 | Average normal cost 0.427081787063 | Standard deviation in normal cost 0.84972758748
+
+Corruption 0.300000 | epochs 50 | hidden 400 | accuracy 0.845848 | true negative 348| false positive 1 | positive prediction 1915 | patience 1
+
+Min abnormal cost 0.18440871909 | Max abnormal cost 15.4530701548 | Average abnormal cost 0.995754463937 | Standard deviation in abnormal cost 2.59799486333
+
+ Min normal cost 0.00209216784742 | Max normal cost 16.3961047558 | Average normal cost 0.242612967395 | Standard deviation in normal cost 0.864839750955
+
+Corruption 0.300000 | epochs 50 | hidden 400 | accuracy 0.984982 | true negative 0| false positive 34 | positive prediction 2230 | patience 1
+
+Min abnormal cost 0.0 | Max abnormal cost 0.0 | Average abnormal cost 0.0 | Standard deviation in abnormal cost 0.0
+
+ Min normal cost 0.0 | Max normal cost 0.0 | Average normal cost 0.0 | Standard deviation in normal cost 0.0
+
+Corruption 0.300000 | epochs 5 | hidden 50 | accuracy 0.984982 | true negative 0| false positive 34 | positive prediction 2230 | patience 1
+
+Min abnormal cost 0.0 | Max abnormal cost 0.0 | Average abnormal cost 0.0 | Standard deviation in abnormal cost 0.0
+
+ Min normal cost 0.0 | Max normal cost 0.0 | Average normal cost 0.0 | Standard deviation in normal cost 0.0
+
+Corruption 0.300000 | epochs 5 | hidden 50 | accuracy 0.984982 | true negative 0| false positive 34 | positive prediction 2230 | patience 1
+
+Min abnormal cost 0.0 | Max abnormal cost 0.0 | Average abnormal cost 0.0 | Standard deviation in abnormal cost 0.0
+
+ Min normal cost 0.0 | Max normal cost 0.0 | Average normal cost 0.0 | Standard deviation in normal cost 0.0
+
+Corruption 0.300000 | epochs 5 | hidden 50 | accuracy 0.984982 | true negative 0| false positive 34 | positive prediction 2230 | patience 1
+
+Min abnormal cost 0.0 | Max abnormal cost 0.0 | Average abnormal cost 0.0 | Standard deviation in abnormal cost 0.0
+
+ Min normal cost 0.0 | Max normal cost 0.0 | Average normal cost 0.0 | Standard deviation in normal cost 0.0
+
+Corruption 0.300000 | epochs 5 | hidden 50 | accuracy 0.984982 | true negative 0| false positive 34 | positive prediction 2230 | patience 1
+
+Min abnormal cost 0.0 | Max abnormal cost 0.0 | Average abnormal cost 0.0 | Standard deviation in abnormal cost 0.0
+
+ Min normal cost 0.0 | Max normal cost 0.0 | Average normal cost 0.0 | Standard deviation in normal cost 0.0
+
+Corruption 0.300000 | epochs 5 | hidden 50 | accuracy 0.015018 | true negative 2230| false positive 0 | positive prediction 34 | patience 1
+
+Min abnormal cost [[ 63.43085117]] | Max abnormal cost [[ 63.43085117]] | Average abnormal cost 67.4908516126 | Standard deviation in abnormal cost 9.33992052168
+
+ Min normal cost [[ 73.10052041]] | Max normal cost [[ 73.10052041]] | Average normal cost 70.3272986184 | Standard deviation in normal cost 11.7430428997
+
+Corruption 0.300000 | epochs 5 | hidden 50 | accuracy 0.020760 | true negative 2217| false positive 0 | positive prediction 47 | patience 1
+
+Min abnormal cost 37.1909996843 | Max abnormal cost 99.4848754116 | Average abnormal cost 67.4908516126 | Standard deviation in abnormal cost 9.33992052168
+
+ Min normal cost -111.284244371 | Max normal cost 109.86473062 | Average normal cost 70.3272986184 | Standard deviation in normal cost 11.7430428997
+
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.223940 | true negative 1729| false positive 28 | positive prediction 507 | patience 1
+
+Min abnormal cost 38.9993486054 | Max abnormal cost 98.5154090154 | Average abnormal cost 66.5645322831 | Standard deviation in abnormal cost 9.72109203601
+
+ Min normal cost -93.8397857279 | Max normal cost 112.055353092 | Average normal cost 69.9369952594 | Standard deviation in normal cost 11.650675786
+
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.164753 | true negative 1865| false positive 26 | positive prediction 373 | patience 1
+
+Min abnormal cost 36.3540047271 | Max abnormal cost 101.796527107 | Average abnormal cost 68.0743953305 | Standard deviation in abnormal cost 9.72382794088
+
+ Min normal cost -64.745011673 | Max normal cost 110.169005262 | Average normal cost 70.7683140389 | Standard deviation in normal cost 10.323374623
+
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.984982 | true negative 0| false positive 34 | positive prediction 2230 | patience 1
+
+Min abnormal cost 0.273985060206 | Max abnormal cost 20.4856605812 | Average abnormal cost 1.34222482945 | Standard deviation in abnormal cost 3.44714449186
+
+ Min normal cost 0.0617053906693 | Max normal cost 17.8906595251 | Average normal cost 0.455126841426 | Standard deviation in normal cost 1.11498062483
+
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.840989 | true negative 344| false positive 16 | positive prediction 1904 | patience 1
+
+Min abnormal cost 0.273985060206 | Max abnormal cost 20.4856605812 | Average abnormal cost 1.34222482945 | Standard deviation in abnormal cost 3.44714449186
+
+ Min normal cost 0.0617053906693 | Max normal cost 17.8906595251 | Average normal cost 0.455126841426 | Standard deviation in normal cost 1.11498062483
+
+Corruption 0.300000 | epochs 150 | hidden 50 | accuracy 0.848057 | true negative 325| false positive 19 | positive prediction 1920 | patience 1
+
+Min abnormal cost 0.254242426346 | Max abnormal cost 20.5375605928 | Average abnormal cost 1.31471973653 | Standard deviation in abnormal cost 3.45905243072
+
+ Min normal cost 0.0400538245125 | Max normal cost 17.729618119 | Average normal cost 0.410422564537 | Standard deviation in normal cost 1.10346531203
+
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.835247 | true negative 368| false positive 5 | positive prediction 1891 | patience 1
+
+Min abnormal cost 0.162666839369 | Max abnormal cost 17.4823028404 | Average abnormal cost 1.07203407456 | Standard deviation in abnormal cost 2.95341313931
+
+ Min normal cost 0.0049320885246 | Max normal cost 13.7586348588 | Average normal cost 0.272388220285 | Standard deviation in normal cost 0.891023112358
+
+Corruption 0.300000 | epochs 50 | hidden 400 | accuracy 0.839223 | true negative 353| false positive 11 | positive prediction 1900 | patience 1
+
+Min abnormal cost 0.134425696532 | Max abnormal cost 13.844209945 | Average abnormal cost 0.849462890859 | Standard deviation in abnormal cost 2.33199450758
+
+ Min normal cost 0.0128172620128 | Max normal cost 12.8772353751 | Average normal cost 0.240422917018 | Standard deviation in normal cost 0.770268760397
+
+Corruption 0.300000 | epochs 100 | hidden 400 | accuracy 0.840989 | true negative 354| false positive 6 | positive prediction 1904 | patience 1
+
+Min abnormal cost 0.162062322495 | Max abnormal cost 10.8184542414 | Average abnormal cost 0.78339935836 | Standard deviation in abnormal cost 1.83807303226
+
+ Min normal cost 0.00926760146287 | Max normal cost 12.4686725029 | Average normal cost 0.220314171414 | Standard deviation in normal cost 0.71372218724
+
+Corruption 0.300000 | epochs 150 | hidden 400 | accuracy 0.847615 | true negative 342| false positive 3 | positive prediction 1919 | patience 1
+
+Min abnormal cost 0.175211599587 | Max abnormal cost 10.4045856994 | Average abnormal cost 0.784320697282 | Standard deviation in abnormal cost 1.77114686201
+
+ Min normal cost 0.00640024633545 | Max normal cost 12.1532500327 | Average normal cost 0.209542709575 | Standard deviation in normal cost 0.698151935061
+
+Corruption 0.300000 | epochs 200 | hidden 400 | accuracy 0.849823 | true negative 337| false positive 3 | positive prediction 1924 | patience 1
+
+Min abnormal cost 0.168607615935 | Max abnormal cost 10.2224315885 | Average abnormal cost 0.774113504689 | Standard deviation in abnormal cost 1.74162436105
+
+ Min normal cost 0.00494697445776 | Max normal cost 11.8368490959 | Average normal cost 0.208323787392 | Standard deviation in normal cost 0.692391337704
+
+Corruption 0.300000 | epochs 200 | hidden 400 | accuracy 0.859982 | true negative 317| false positive 0 | positive prediction 1947 | patience 1
+
+Min abnormal cost 0.271645435458 | Max abnormal cost 10.6948858855 | Average abnormal cost 0.950609493541 | Standard deviation in abnormal cost 1.80115347173
+
+ Min normal cost 0.0158676718702 | Max normal cost 11.1955690456 | Average normal cost 0.228859810715 | Standard deviation in normal cost 0.669182622353
+
+Corruption 0.300000 | epochs 50 | hidden 400 | accuracy 0.833922 | true negative 376| false positive 0 | positive prediction 1888 | patience 100
+
+Min abnormal cost 0.306820733647 | Max abnormal cost 12.2451387734 | Average abnormal cost 1.00760224852 | Standard deviation in abnormal cost 2.05110334825
+
+ Min normal cost 0.0282228686766 | Max normal cost 13.6624603871 | Average normal cost 0.271674607908 | Standard deviation in normal cost 0.735911164561
+
+Corruption 0.300000 | epochs 50 | hidden 400 | accuracy 0.866608 | true negative 302| false positive 0 | positive prediction 1962 | patience 1
+
+Min abnormal cost 0.309920221183 | Max abnormal cost 12.2555096119 | Average abnormal cost 1.01485304499 | Standard deviation in abnormal cost 2.05208679969
+
+ Min normal cost 0.0293885241384 | Max normal cost 13.6598193648 | Average normal cost 0.273793430803 | Standard deviation in normal cost 0.735805921914
+
+Corruption 0.300000 | epochs 50 | hidden 400 | accuracy 0.875000 | true negative 282| false positive 1 | positive prediction 1981 | patience 1
+
+Min abnormal cost 0.292554621717 | Max abnormal cost 12.5986106334 | Average abnormal cost 1.03013719575 | Standard deviation in abnormal cost 2.11087702768
+
+ Min normal cost 0.0204566291583 | Max normal cost 13.0528465077 | Average normal cost 0.254193091684 | Standard deviation in normal cost 0.724668291518
+
+Corruption 0.300000 | epochs 50 | hidden 75 | accuracy 0.871908 | true negative 289| false positive 1 | positive prediction 1974 | patience 1
+
+Min abnormal cost 0.233668389048 | Max abnormal cost 15.920232586 | Average abnormal cost 1.14490695954 | Standard deviation in abnormal cost 2.67466725445
+
+ Min normal cost 0.0188623068376 | Max normal cost 12.3035560368 | Average normal cost 0.262664032644 | Standard deviation in normal cost 0.773708496656
+
+Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.870141 | true negative 293| false positive 1 | positive prediction 1970 | patience 1
+
+Min abnormal cost 0.261657169008 | Max abnormal cost 15.9562261621 | Average abnormal cost 1.17912959416 | Standard deviation in abnormal cost 2.67865818579
+
+ Min normal cost 0.0202682530972 | Max normal cost 13.1182094923 | Average normal cost 0.274842119268 | Standard deviation in normal cost 0.810370792288
+
+Corruption 0.300000 | epochs 150 | hidden 400 | accuracy 0.879417 | true negative 272| false positive 1 | positive prediction 1991 | patience 1
+
+Min abnormal cost 0.285430812741 | Max abnormal cost 12.6553211391 | Average abnormal cost 1.07197765592 | Standard deviation in abnormal cost 2.11012070705
+
+ Min normal cost 0.0178705564764 | Max normal cost 10.8163484977 | Average normal cost 0.242464096312 | Standard deviation in normal cost 0.680149181743
+
+Corruption 0.300000 | epochs 150 | hidden 500 | accuracy 0.879859 | true negative 270| false positive 2 | positive prediction 1992 | patience 1
+
+Min abnormal cost 0.282950002993 | Max abnormal cost 12.202382561 | Average abnormal cost 1.03375316526 | Standard deviation in abnormal cost 2.03874844784
+
+ Min normal cost 0.0172261537345 | Max normal cost 11.2569097354 | Average normal cost 0.239143577204 | Standard deviation in normal cost 0.683078840011
+
+Corruption 0.300000 | epochs 100 | hidden 300 | accuracy 0.878534 | true negative 273| false positive 2 | positive prediction 1989 | patience 1
+
+Min abnormal cost 0.252118633279 | Max abnormal cost 12.7247160632 | Average abnormal cost 1.02239255599 | Standard deviation in abnormal cost 2.12897072995
+
+ Min normal cost 0.0173949213033 | Max normal cost 11.3776208001 | Average normal cost 0.235354283883 | Standard deviation in normal cost 0.687816949158
+
+Corruption 0.300000 | epochs 50 | hidden 100 | accuracy 0.863516 | true negative 306| false positive 3 | positive prediction 1955 | patience 1
+
+Min abnormal cost 0.194187214217 | Max abnormal cost 15.4081998697 | Average abnormal cost 1.06760815069 | Standard deviation in abnormal cost 2.58681094621
+
+ Min normal cost 0.0175908186764 | Max normal cost 13.8809344531 | Average normal cost 0.260276059375 | Standard deviation in normal cost 0.792697527725
+
+Corruption 0.300000 | epochs 50 | hidden 75 | accuracy 0.871908 | true negative 289| false positive 1 | positive prediction 1974 | patience 1
+
+Min abnormal cost 0.233668389048 | Max abnormal cost 15.920232586 | Average abnormal cost 1.14490695954 | Standard deviation in abnormal cost 2.67466725445
+
+ Min normal cost 0.0188623068376 | Max normal cost 12.3035560368 | Average normal cost 0.262664032644 | Standard deviation in normal cost 0.773708496656
+
+Corruption 0.300000 | epochs 50 | hidden 40 | accuracy 0.864399 | true negative 306| false positive 1 | positive prediction 1957 | patience 1
+
+Min abnormal cost 0.293260829337 | Max abnormal cost 16.3811525819 | Average abnormal cost 1.23079035695 | Standard deviation in abnormal cost 2.74298621316
+
+ Min normal cost 0.0219051675958 | Max normal cost 13.0333655239 | Average normal cost 0.286180543301 | Standard deviation in normal cost 0.81541895435
+
+Corruption 0.300000 | epochs 50 | hidden 75 | accuracy 0.856449 | true negative 310| false positive 15 | positive prediction 1939 | patience 100
+
+Min abnormal cost 0.16686830765 | Max abnormal cost 15.9195229718 | Average abnormal cost 1.03240632497 | Standard deviation in abnormal cost 2.68529861894
+
+ Min normal cost 0.02740352179 | Max normal cost 12.1972151438 | Average normal cost 0.270693372892 | Standard deviation in normal cost 0.770297753446
+
+Corruption 0.300000 | epochs 75 | hidden 75 | accuracy 0.875442 | true negative 281| false positive 1 | positive prediction 1982 | patience 1
+
+Min abnormal cost 0.258995405356 | Max abnormal cost 15.195139101 | Average abnormal cost 1.14654943825 | Standard deviation in abnormal cost 2.55379772017
+
+ Min normal cost 0.0163687391337 | Max normal cost 11.6362478761 | Average normal cost 0.256330360675 | Standard deviation in normal cost 0.754711433315
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.876325 | true negative 279| false positive 1 | positive prediction 1984 | patience 1
+
+Min abnormal cost 0.251764105087 | Max abnormal cost 14.8308656263 | Average abnormal cost 1.12125219442 | Standard deviation in abnormal cost 2.49645868572
+
+ Min normal cost 0.0166764762953 | Max normal cost 11.5092855043 | Average normal cost 0.248772108435 | Standard deviation in normal cost 0.746226643677
+
+Corruption 0.300000 | epochs 125 | hidden 75 | accuracy 0.875883 | true negative 279| false positive 2 | positive prediction 1983 | patience 1
+
+Min abnormal cost 0.278266159825 | Max abnormal cost 14.5974667093 | Average abnormal cost 1.14025510604 | Standard deviation in abnormal cost 2.45593598918
+
+ Min normal cost 0.0147176193934 | Max normal cost 11.423118317 | Average normal cost 0.250942222402 | Standard deviation in normal cost 0.750180784576
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.871025 | true negative 291| false positive 1 | positive prediction 1972 | patience 1
+
+Min abnormal cost 0.270755929101 | Max abnormal cost 15.3835005103 | Average abnormal cost 1.23717475265 | Standard deviation in abnormal cost 2.57834260915
+
+ Min normal cost 0.0189636599337 | Max normal cost 11.2843368746 | Average normal cost 0.278182003353 | Standard deviation in normal cost 0.746734609926
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.836131 | true negative 355| false positive 16 | positive prediction 1893 | patience 1
+
+Min abnormal cost 0.169266388148 | Max abnormal cost 19.1707743097 | Average abnormal cost 1.16768857051 | Standard deviation in abnormal cost 3.23677556373
+
+ Min normal cost 0.0277862091324 | Max normal cost 16.8140347794 | Average normal cost 0.349951244551 | Standard deviation in normal cost 0.988610476743
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.873675 | true negative 285| false positive 1 | positive prediction 1978 | patience 1
+
+Min abnormal cost 0.287601675964 | Max abnormal cost 15.5805903237 | Average abnormal cost 1.21251668322 | Standard deviation in abnormal cost 2.63815535889
+
+ Min normal cost 0.0139316601235 | Max normal cost 11.6503065487 | Average normal cost 0.262678147617 | Standard deviation in normal cost 0.763977442344
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.884276 | true negative 259| false positive 3 | positive prediction 2002 | patience 1
+
+Min abnormal cost 0.251764105087 | Max abnormal cost 14.8308656263 | Average abnormal cost 1.12125219442 | Standard deviation in abnormal cost 2.49645868572
+
+ Min normal cost 0.0166764762953 | Max normal cost 11.5092855043 | Average normal cost 0.248772108435 | Standard deviation in normal cost 0.746226643677
+
+Corruption 0.300000 | epochs 50 | hidden 75 | accuracy 0.879417 | true negative 269| false positive 4 | positive prediction 1991 | patience 1
+
+Min abnormal cost 0.233668389048 | Max abnormal cost 15.920232586 | Average abnormal cost 1.14490695954 | Standard deviation in abnormal cost 2.67466725445
+
+ Min normal cost 0.0188623068376 | Max normal cost 12.3035560368 | Average normal cost 0.262664032644 | Standard deviation in normal cost 0.773708496656
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.880742 | true negative 268| false positive 2 | positive prediction 1994 | patience 1
+
+Min abnormal cost 0.251764105087 | Max abnormal cost 14.8308656263 | Average abnormal cost 1.12125219442 | Standard deviation in abnormal cost 2.49645868572
+
+ Min normal cost 0.0166764762953 | Max normal cost 11.5092855043 | Average normal cost 0.248772108435 | Standard deviation in normal cost 0.746226643677
+
+Corruption 0.300000 | epochs 100 | hidden 100 | accuracy 0.878092 | true negative 275| false positive 1 | positive prediction 1988 | patience 1
+
+Min abnormal cost 0.265765986234 | Max abnormal cost 13.1025752674 | Average abnormal cost 1.11512835634 | Standard deviation in abnormal cost 2.20420420633
+
+ Min normal cost 0.0168662690052 | Max normal cost 11.6454100396 | Average normal cost 0.261750735912 | Standard deviation in normal cost 0.734425426267
+
+Corruption 0.300000 | epochs 100 | hidden 100 | accuracy 0.878534 | true negative 274| false positive 1 | positive prediction 1989 | patience 1
+
+Min abnormal cost 0.263086685991 | Max abnormal cost 13.0990266707 | Average abnormal cost 1.11467913667 | Standard deviation in abnormal cost 2.20376770487
+
+ Min normal cost 0.0163272448165 | Max normal cost 11.6460613895 | Average normal cost 0.26189715951 | Standard deviation in normal cost 0.734072561588
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.878534 | true negative 274| false positive 1 | positive prediction 1989 | patience 1
+
+Min abnormal cost 0.276214746662 | Max abnormal cost 14.1591710891 | Average abnormal cost 1.16838750152 | Standard deviation in abnormal cost 2.38726090715
+
+ Min normal cost 0.0160719156956 | Max normal cost 11.2928166354 | Average normal cost 0.266212615168 | Standard deviation in normal cost 0.745998360202
+
+Corruption 0.300000 | epochs 100 | hidden 70 | accuracy 0.875883 | true negative 280| false positive 1 | positive prediction 1983 | patience 1
+
+Min abnormal cost 0.27333208433 | Max abnormal cost 13.5484279848 | Average abnormal cost 1.16193429995 | Standard deviation in abnormal cost 2.29410376343
+
+ Min normal cost 0.0163046034137 | Max normal cost 11.675888211 | Average normal cost 0.271199150959 | Standard deviation in normal cost 0.754750208408
+
+Corruption 0.300000 | epochs 100 | hidden 80 | accuracy 0.877208 | true negative 276| false positive 2 | positive prediction 1986 | patience 1
+
+Min abnormal cost 0.284521727071 | Max abnormal cost 13.9429386654 | Average abnormal cost 1.12283947218 | Standard deviation in abnormal cost 2.35322490041
+
+ Min normal cost 0.0141557287086 | Max normal cost 12.282597333 | Average normal cost 0.262840665697 | Standard deviation in normal cost 0.755687044843
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.862191 | true negative 291| false positive 21 | positive prediction 1952 | patience 1
+
+Min abnormal cost 0.155049214077 | Max abnormal cost 14.2091887084 | Average abnormal cost 0.942702650278 | Standard deviation in abnormal cost 2.41618068077
+
+ Min normal cost 0.00426641814563 | Max normal cost 11.6552705284 | Average normal cost 0.244235317597 | Standard deviation in normal cost 0.789193089338
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.861307 | true negative 293| false positive 21 | positive prediction 1950 | patience 1
+
+Min abnormal cost 0.158978083022 | Max abnormal cost 15.2988048341 | Average abnormal cost 0.982119397805 | Standard deviation in abnormal cost 2.59023745738
+
+ Min normal cost 0.00403193105237 | Max normal cost 11.3680089105 | Average normal cost 0.24166526365 | Standard deviation in normal cost 0.788188782331
+

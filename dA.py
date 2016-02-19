@@ -217,11 +217,11 @@ class dA(object):
         y = self.get_hidden_values(tilde_x)
         z = self.get_reconstructed_input(y)
 	#L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
-        
-	L = T.mean(T.sum(T.sqr(self.x-z)))
+        L = T.sqr(self.x-z)
+	#L = T.mean(T.sum(T.sqr(self.x-z)))
         #L = self.x * T.log(z) + (1 - self.x) * T.log(1 - z)
-        return [z,self.x]
- 	#return L
+        #return [z,self.x]
+ 	return L
 
     def get_hidden_values(self, input):
         """ Computes the values of the hidden layer """
@@ -244,14 +244,16 @@ class dA(object):
 	    # note : we sum over the size of a datapoint; if we are using
             #        minibatches, L will be a vector, with one entry per
 	    #        example in minibatch
-        #L = T.mean(T.sum(T.sqr(self.x-z)))
-        L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
+        L = T.mean(T.sum(T.sqr(self.x-z)))
+        #L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
 
             # note : L is now a vector, where each element is the
             #        cross-entropy cost of the reconstruction of the
             #        corresponding exam
 
         cost = T.mean(L)
+        if anomaly:
+		return cost
 	#cost = L
             # compute the gradients of the cost of the `dA` with respect
             # to its parameters
@@ -419,39 +421,39 @@ def test_dA(learning_rate=0.3, training_epochs=50,hidden_units=50,
 
     for i in xrange(len(test_set_y)):
 	
-	#cost = test_da_real(idx)
-	#if cost>0.2 and not test_set_y[idx]==0:
-	#	positive_prediction+=1
-	#if cost>0.2 and test_set_y[idx]==0:
-	#	true_negative+=1
-	#if cost<0.2 and test_set_y[idx]==0:
-	#	positive_prediction+=1
-	#if cost<0.2 and not test_set_y[idx]==0:
-	#	false_positive+=1
+	cost = test_da_real(idx)
+	if cost>0.2 and not test_set_y[idx]==0:
+		positive_prediction+=1
+	if cost>0.2 and test_set_y[idx]==0:
+		true_negative+=1
+	if cost<0.2 and test_set_y[idx]==0:
+		positive_prediction+=1
+	if cost<0.2 and not test_set_y[idx]==0:
+		false_positive+=1
 
         if test_set_y[idx]==1:
-            cost = test_da_real(idx)
+        #    cost = test_da_real(idx)
             #print ("\n\ncost of V beat %f\n\n"%(numpy.mean(cost)))
-        #    print ("\n\nV beat\n\n")
-	#    print cost
+            print ("\n\nV beat\n\n")
+	    print cost
 	    #cost_high =  [cost[0][i] for i in cost[0].argsort()[-30:][::-1]]
             #cost_low = [cost[0][i] for i in cost[0].argsort()[:30][::-1]]
 	    #print numpy.mean(cost_low)
 	    #print numpy.mean(numpy.mean(cost_high)+numpy.mean(cost_low))
 	#    print ('\n')
-	    plt.figure(idx)
-	    plt.plot(cost[0][0],color='r')
-	    plt.plot(cost[1][0],color='g')
-	    plt.savefig('v_recon_%d.png'%(idx))
+	 #   plt.figure(idx)
+	 #   plt.plot(cost[0][0],color='r')
+	 #   plt.plot(cost[1][0],color='g')
+	 #   plt.savefig('v_recon_%d.png'%(idx))
 	#   total_y+=1
 
         else:
-            cost = test_da_real(idx)
+         #   cost = test_da_real(idx)
             #print ("cost of N beat %f"%(numpy.mean(cost)))
-            #print ("N beat")
+            print ("N beat")
 	    #print cost.argsort()[-7:][::-1]
 	#    print ("N beat")
-	#    print cost
+	    print cost
             #cost_high =  [cost[0][i] for i in cost[0].argsort()[-30:][::-1]]
             #cost_low = [cost[0][i] for i in cost[0].argsort()[:30][::-1]]
 	    #print numpy.mean(cost_low)

@@ -34,7 +34,6 @@ from __future__ import print_function
 
 import os
 import sys
-import matplotlib.pyplot as plt
 import timeit
 
 import numpy
@@ -584,99 +583,107 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
     false_positive = 0
     ana_cost = []
     normal_cost = []
+    anamoly = 0
     for i in predicted_values[1]:
-	cost = sda.anomaly_score(pretraining_fns_anomaly,layers,idx,corruption_levels)
+	#cost = sda.anomaly_score(pretraining_fns_anomaly,layers,idx,corruption_levels)
        # print len(cost[0])
-        cost = cost[0]
+        #cost = cost[0]
         #print (cost[0][90:]),
         #print (cost[0].shape)
         #cost = numpy.mean(numpy.sum(cost[0][120:]))
-	if test_set_y[idx]==0:
-	    print ('N beat, cost ='),
-	    normal_cost.append(cost)
-            print (cost)
-	else:
-	    print ('ANAMOLY cost = '),
-	    ana_cost.append(cost)
-	    print (cost)
+	if int(test_set_y[idx])==i:
+	    positive_prediction+=1
+
+	if not int(test_set_y[idx])==0 and int(test_set_y[idx])==int(i):
+	    anamoly +=1
+            #print('classified beat %d'),
+            #print(i)
+	    #print ('N beat, cost ='),
+	    #normal_cost.append(cost)
+            #print (cost)
+
+        if not int(test_set_y[idx]==int(i)):
+	    print(predicted_values[0])		
+	#else:
+	    
+	    #print ('ANAMOLY cost = '),
+	    #ana_cost.append(cost)
+	    #print (cost)
 
     	#if i==1 and test_set_y[idx]==i:
     	#    	correct_y+=1
 
-        if not test_set_y[idx]==0 and cost>threshold:
+        #if not test_set_y[idx]==0 and cost>threshold:
             	#cost = sda.anomaly_score(pretraining_fns_anomaly,2,idx)
  		#print ("\n\ncost of V beat %f\n\n"%(numpy.mean(cost[1])))
     	    	#print ("V beat")
 		#print (predicted_values[0][idx])
-		positive_prediction +=1
-		total_y+=1
+	#	positive_prediction +=1
+	#	total_y+=1
 
         #if i==0 and test_set_y[idx]==i:
          #  	 correct_n+=1
 
-      	if test_set_y[idx]==0 and cost>threshold:
-		true_negative += 1
+      	#if test_set_y[idx]==0 and cost>threshold:
+	#	true_negative += 1
             	#cost = sda.anomaly_score(pretraining_fns_anomaly,2,idx)
 		#print ("cost of N beat %f"%(numpy.mean(cost[1])))
     	    	#print ("N beat")
 		#print (predicted_values[0][idx])
 		
-		total_n+=1
+	#	total_n+=1
 
-        if not test_set_y[idx]==0 and cost<threshold:
-		false_positive +=1
+        #if not test_set_y[idx]==0 and cost<threshold:
+	#	false_positive +=1
 
-        if test_set_y[idx]==0 and cost<threshold:
-		positive_prediction += 1
+        #if test_set_y[idx]==0 and cost<threshold:
+	#	positive_prediction += 1
 
         idx+=1
 
-    print ("correct y")
-    print (correct_y)
-    print ("total y")
-    print (total_y)
-    print ("correct n")
-    print (correct_n)
-    print ("total n")
-    print (total_n)
+    #print ("correct y")
+    #print (correct_y)
+    #print ("total y")
+    #print (total_y)
+    #print ("correct n")
+    #print (correct_n)
+    print ("positive prediction")
+    print (positive_prediction)
+    print ("Anamolies classified")
+    print (anamoly)
     print ("total beats")
     print (idx)
 
    # print (predicted_values)
     #print (test_set_y)
-    file = open('results/lr_sda_results.txt','a')
-    file.write('Corruption %f | epochs %d | hidden %d | accuracy %f | true negative %d| false positive %d | positive prediction %d | patience %d'%(corruption_levels[0], pretraining_epochs, hidden_layer_sizes[0],(positive_prediction*1.00/idx), true_negative, false_positive, positive_prediction,patience_init))
-    file.write('\n\n')
+    #file = open('results/lr_sda_results.txt','a')
+    #file.write('Corruption %f | epochs %d | hidden %d | accuracy %f | true negative %d| false positive %d | positive prediction %d | patience %d'%(corruption_levels[0], pretraining_epochs, hidden_layer_sizes[0],(positive_prediction*1.00/idx), true_negative, false_positive, positive_prediction,patience_init))
+    #file.write('\n\n')
    
-    ana_cost = numpy.array(ana_cost)
+    #ana_cost = numpy.array(ana_cost)
     #ana_cost_max = ana_cost.argsort()[0]
     
-    normal_cost = numpy.array(normal_cost)
+    #normal_cost = numpy.array(normal_cost)
    ### Stats on normal and Abnormal costs ###
 
-    file.write("Min abnormal cost ")
-    file.write(str(ana_cost[ana_cost.argsort()[0]]))
-    file.write(" | Max abnormal cost ")
-    file.write(str(ana_cost[ana_cost.argsort()[-1]]))
-    file.write(" | Average abnormal cost ")
-    file.write(str(numpy.mean(ana_cost)))
-    file.write(" | Standard deviation in abnormal cost ")
-    file.write(str(numpy.std(ana_cost)))
-    file.write('\n\n')
+    #file.write("Min abnormal cost ")
+    #file.write(str(ana_cost[ana_cost.argsort()[0]]))
+    #file.write(" | Max abnormal cost ")
+    #file.write(str(ana_cost[ana_cost.argsort()[-1]]))
+    #file.write(" | Average abnormal cost ")
+    #file.write(str(numpy.mean(ana_cost)))
+    #file.write(" | Standard deviation in abnormal cost ")
+    #file.write(str(numpy.std(ana_cost)))
+    #file.write('\n\n')
    
-    file.write(" Min normal cost ")
-    file.write(str(normal_cost[normal_cost.argsort()[0]]))
-    file.write(" | Max normal cost ")
-    file.write(str(normal_cost[normal_cost.argsort()[-1]]))
-    file.write(" | Average normal cost ")
-    file.write(str(numpy.mean(normal_cost)))
-    file.write(" | Standard deviation in normal cost ")
-    file.write(str(numpy.std(normal_cost)))
-    file.write('\n\n')
-    file.close()
+    #file.write(" Min normal cost ")
+    #file.write(str(normal_cost[normal_cost.argsort()[0]]))
+    #file.write(" | Max normal cost ")
+    #file.write(str(normal_cost[normal_cost.argsort()[-1]]))
+    #file.write(" | Average normal cost ")
+    #file.write(str(numpy.mean(normal_cost)))
+    #file.write(" | Standard deviation in normal cost ")
+    #file.write(str(numpy.std(normal_cost)))
+    #file.write('\n\n')
+    #file.close()
 
-    plt.figure(0)
-    plt.plot(normal_cost,color='r')
-    plt.plot(ana_cost,color='b')
-    plt.savefig('recon_error_distribution.png')
-    
