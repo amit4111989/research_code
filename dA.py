@@ -425,9 +425,10 @@ def test_dA(learning_rate=0.3, training_epochs=50,hidden_units=50,
 	cost = test_da_real(idx)
         if not test_set_y[idx] ==0 and anom[int(test_set_y[idx])]:
         	plt.figure(idx)
-		print cost
-        	plt.plot(cost[0][0][1],'r')
-                plt.plot(cost[1][0][1],'b')
+		#print cost
+                print cost[0][0]
+        	plt.plot(cost[0][0],'r')
+                plt.plot(cost[1][0],'b')
                 plt.savefig('fig_%d_recon.png'%(test_set_y[idx]))
                 anom[int(test_set_y[idx])] = False
 	#if cost>0.2 and not test_set_y[idx]==0:
