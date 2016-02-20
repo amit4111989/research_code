@@ -876,3 +876,9 @@ Min abnormal cost 0.158978083022 | Max abnormal cost 15.2988048341 | Average abn
 
  Min normal cost 0.00403193105237 | Max normal cost 11.3680089105 | Average normal cost 0.24166526365 | Standard deviation in normal cost 0.788188782331
 
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.861307 | true negative 293| false positive 21 | positive prediction 1950 | patience 1
+
+Min abnormal cost 0.158978083022 | Max abnormal cost 15.2988048341 | Average abnormal cost 0.982119397805 | Standard deviation in abnormal cost 2.59023745738
+
+ Min normal cost 0.00403193105237 | Max normal cost 11.3680089105 | Average normal cost 0.24166526365 | Standard deviation in normal cost 0.788188782331
+

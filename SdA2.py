@@ -686,6 +686,8 @@ def test_SdA(nins,nouts,hidden_layer_sizes,corruption_levels,
     normal_cost = numpy.array(normal_cost)
     #normal_cost = normal_cost.reshape(2264,)
     #normal_cost = [normal_cost[i] for i in normal_cost.argsort()]
-    plt.hist(normal_cost,bins=(0.005,0.01,0.05,0.1,0.5,1,5,10,15))
-    plt.savefig('recon_error_distribution.png')
-    
+    plt.plot(normal_cost)
+    plt.savefig('recon_error_normal.png')
+    plt.figure(2)
+    plt.plot(ana_cost,color='r')
+    plt.savefig('recon_error_anomaly.png')
