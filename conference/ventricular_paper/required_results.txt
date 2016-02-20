@@ -1,0 +1,20 @@
+PLOTS
+
+Segments with vt/vf rhythm
+Reconstruction of vt/vf rhythm
+
+COMPARISON
+
+Comparing proposed method with other published studies
+Comapring autoencoder w/ classification layer with other published studies
+Comparing autoencoder w/ classification + anamoly detector with other published studies
+
+FIGS
+
+Algorithm
+
+TABLE
+
+Features selected for the analysis
+
+

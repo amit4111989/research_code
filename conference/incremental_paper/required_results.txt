@@ -1,0 +1,26 @@
+PLOTS
+
+SDAE w/ classification error for extended database without incremental learning
+SDAE w/ classification error for extended database with incremental learning
+SDAE w/ classification + Anamoly detector error for extended database without incremental learning
+SDAE w/ classification error + Anamoly detector error for extended database with incremental learning
+
+COMAPRISON
+
+Classification Error vs Dataset size (Read Mins of heartbeat)
+Distribution generated with gaussian with different variances in the distribution , appeneded to the original records
+SDAE w/ classification results for extended database without incremental learning
+SDAE w/ classification results for extended database with incremental learning
+SDAE w/ classification + Anamoly detector results  for extended database without incremental learning
+SDAE w/ classification error + Anamoly detector results  for extended database with incremental learning
+Other methods and their errors for the above given four sets
+Anamoly detector performance on extended set for 1, 2, 3 layers
+Linear SVM, AE, DAE, SDAE comparison for classification with incremental learning
+
+FIG
+
+Algorithm
+
+TABLE
+
+NONE

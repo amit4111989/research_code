@@ -1,0 +1,33 @@
+PLOTS
+
+ECG arrhythmias at different cutoff frequencies
+ECG arrhythmias reconstruction plot of normal beat (averaged over test records)
+ECG arrhythmia recontruction plot of abnormal beat (V,S,F,Q) (averaged over test records)
+Distribution of normal beat recontrsuction errors
+Distribution of abnormal beat reconstruction errors
+Gaussian distribution for reconstruction errors - abnormal, normal
+
+RESULTS
+
+Anamoly detector accuracy, sensitivity, specificity and positive prediction rate for test records (percentage)
+Anamoly detector accuracy, sensitivity, specificity and positive prediction rate for test records (count)
+Anamoly detector comaprison in terms of  1 , 2, 3 layers
+Classifier accuracy , sensitivity , specificity and positive prediction rate for test , train and all records (percentage)
+Classifier accuracy , sensitivity , specificity and positive prediction rate for test , train and all records (count)
+Classifier accuracy + anamoly detector , sensitivity , specificity and positive prediction rate for test , train and all records (percentage)
+Classifier accuracy + anamoly detector, sensitivity , specificity and positive prediction rate for test , train and all records (count)
+
+COMPARISONS
+
+Classifier + anamoly detector comparison with other papers
+Anamoly detector accuracy , sensitivity , specificity and ppr comparison with OneClass SVM
+
+TABLES
+
+Groupings of beats
+
+FIG
+
+Algorithm 
+
+
