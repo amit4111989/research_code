@@ -267,7 +267,7 @@ class dA(object):
         return (cost, updates)
 
 
-def test_dA(learning_rate=0.3, training_epochs=50,hidden_units=50,
+def test_dA(learning_rate=0.3, training_epochs=100,hidden_units=75,
             dataset='mnist.pkl.gz',corruption=0.3,
             batch_size=1, output_folder='dA_plots'):
 
@@ -426,7 +426,6 @@ def test_dA(learning_rate=0.3, training_epochs=50,hidden_units=50,
         if not test_set_y[idx] ==0 and anom[int(test_set_y[idx])]:
         	plt.figure(idx)
 		#print cost
-                print cost[0][0]
         	plt.plot(cost[0][0],'r')
                 plt.plot(cost[1][0],'b')
                 plt.savefig('fig_%d_recon.png'%(test_set_y[idx]))

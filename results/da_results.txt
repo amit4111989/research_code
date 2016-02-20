@@ -56,3 +56,5 @@ Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.000000 | true negative 
 
 Corruption 0.300000 | epochs 50 | hidden 50 | accuracy 0.000000 | true negative 0 | false positive 0 | positive prediction 0
 
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.000000 | true negative 0 | false positive 0 | positive prediction 0
+
