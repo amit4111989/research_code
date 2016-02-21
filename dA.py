@@ -182,6 +182,8 @@ class dA(object):
             self.x = T.dmatrix(name='input')
         else:
             self.x = input
+        
+        self.x2 = T.dmatrix(name='second_input')
 
         self.params = [self.W, self.b, self.b_prime]
 
@@ -222,6 +224,10 @@ class dA(object):
         #L = self.x * T.log(z) + (1 - self.x) * T.log(1 - z)
         return [z,self.x]
  	#return L
+    def get_normal_cost(self):
+	
+	L = T.mean(T.sum(T.sqr(self.x-self.x2)))
+	return L
 
     def get_hidden_values(self, input):
         """ Computes the values of the hidden layer """
@@ -397,11 +403,21 @@ def test_dA(learning_rate=0.3, training_epochs=100,hidden_units=75,
     #     }
     # )
 
-    test_da_real = theano.function(
-        [index],
-        cost,
-        givens={
-            x: test_set_x[index * batch_size: (index + 1) * batch_size]
+    #test_da_real = theano.function(
+    #    [index],
+    #    cost,
+    #    givens={
+    #        x: test_set_x[index * batch_size: (index + 1) * batch_size]
+    #    }
+    #)
+
+    normal_cost = da.get_normal_cost()
+    test_da_real = theano.function (
+	[index],
+	normal_cost,
+	givens={
+		x: train_set_x[index*batch_size: (index+1)*batch_size],
+		da.x2: test_set_x[(index)*batch_size: (index+1)*batch_size]
         }
     )
 
@@ -422,14 +438,16 @@ def test_dA(learning_rate=0.3, training_epochs=100,hidden_units=75,
 
     for i in xrange(len(test_set_y)):
 	
-	cost = test_da_real(idx)
-        if not test_set_y[idx] ==0 and anom[int(test_set_y[idx])]:
-        	plt.figure(idx)
+	if not idx==(len(test_set_y)-1):
+		cost = test_da_real(idx)
+		print cost,test_set_y[idx]		
+        #if not test_set_y[idx] ==0 and anom[int(test_set_y[idx])]:
+        #	plt.figure(idx)
 		#print cost
-        	plt.plot(cost[0][0],'r')
-                plt.plot(cost[1][0],'b')
-                plt.savefig('fig_%d_recon.png'%(test_set_y[idx]))
-                anom[int(test_set_y[idx])] = False
+        #	plt.plot(cost[0][0],'r')
+        #        plt.plot(cost[1][0],'b')
+        #        plt.savefig('fig_%d_recon.png'%(test_set_y[idx]))
+        #        anom[int(test_set_y[idx])] = False
 	#if cost>0.2 and not test_set_y[idx]==0:
 	#	positive_prediction+=1
 	#if cost>0.2 and test_set_y[idx]==0:
