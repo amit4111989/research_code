@@ -31,6 +31,6 @@ plt.plot(ventr,label="VENTR")
 plt.plot(lam,label="LAM")
 plt.plot(mvert,label="MVERT")
 plt.plot(rt,label="RT")
-plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+plt.legend(loc=2, borderaxespad=0.)
 
 plt.savefig('rqa_vt.png')
