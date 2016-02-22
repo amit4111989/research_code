@@ -64,3 +64,27 @@ Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.000000 | true negative
 
 Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.000000 | true negative 0 | false positive 0 | positive prediction 0
 
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.015018 | true negative 2230 | false positive 0 | positive prediction 34
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.820230 | true negative 389 | false positive 18 | positive prediction 1857
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.821996 | true negative 386 | false positive 17 | positive prediction 1861
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.822438 | true negative 382 | false positive 20 | positive prediction 1862 | mean_thresh 0.250953 
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.844081 | true negative 330 | false positive 23 | positive prediction 1911 | mean_thresh 0.250953 
+
+Corruption 0.300000 | epochs 100 | hidden 75 | accuracy 0.590106 | true negative 927 | false positive 1 | positive prediction 1336 | mean_thresh 0.250953 
+
+Corruption 0.300000 | epochs 500 | hidden 50 | accuracy 0.726148 | true negative 620 | false positive 0 | positive prediction 1644 | mean_thresh 0.220918 
+
+Corruption 0.300000 | epochs 1000 | hidden 50 | accuracy 0.762809 | true negative 536 | false positive 1 | positive prediction 1727 | mean_thresh 0.214976 
+
+Corruption 0.300000 | epochs 3000 | hidden 50 | accuracy 0.779152 | true negative 499 | false positive 1 | positive prediction 1764 | mean_thresh 0.210313 
+
+Corruption 0.300000 | epochs 3000 | hidden 50 | accuracy 0.821555 | true negative 392 | false positive 12 | positive prediction 1860 | mean_thresh 0.210313 
+
+Corruption 0.300000 | epochs 3000 | hidden 50 | accuracy 0.833481 | true negative 377 | false positive 0 | positive prediction 1887 | mean_thresh 0.214992 
+
+Corruption 0.300000 | epochs 3000 | hidden 50 | accuracy 0.833481 | true negative 377 | false positive 0 | positive prediction 1887 | mean_thresh 0.214992 
+

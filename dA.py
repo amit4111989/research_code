@@ -219,11 +219,11 @@ class dA(object):
         y = self.get_hidden_values(tilde_x)
         z = self.get_reconstructed_input(y)
 	#L = - T.sum(self.x * T.log(z) + (1 - self.x) * T.log(1 - z), axis=1)
-        L = T.sqr(self.x-z)
-	#L = T.mean(T.sum(T.sqr(self.x-z)))
+        #L = T.sqr(self.x-z)
+	L = T.mean(T.sum(T.sqr(self.x-z)))
         #L = self.x * T.log(z) + (1 - self.x) * T.log(1 - z)
-        return [z,self.x]
- 	#return L
+        #return [z,self.x]
+ 	return L
     def get_normal_cost(self):
 	
 	L = T.mean(T.sum(T.sqr(self.x-self.x2)))
@@ -273,7 +273,7 @@ class dA(object):
         return (cost, updates)
 
 
-def test_dA(learning_rate=0.3, training_epochs=100,hidden_units=75,
+def test_dA(learning_rate=0.3, training_epochs=3000,hidden_units=50,
             dataset='mnist.pkl.gz',corruption=0.3,
             batch_size=1, output_folder='dA_plots'):
 
@@ -414,10 +414,10 @@ def test_dA(learning_rate=0.3, training_epochs=100,hidden_units=75,
     normal_cost = da.get_normal_cost()
     test_da_real = theano.function (
 	[index],
-	normal_cost,
+	cost,
 	givens={
-		x: train_set_x[index*batch_size: (index+1)*batch_size],
-		da.x2: test_set_x[(index)*batch_size: (index+1)*batch_size]
+		x: test_set_x[index*batch_size: (index+1)*batch_size]
+		#da.x2: test_set_x[(index)*batch_size: (index+1)*batch_size]
         }
     )
 
@@ -435,12 +435,13 @@ def test_dA(learning_rate=0.3, training_epochs=100,hidden_units=75,
     true_negative = 0
     false_positive = 0
     anom = {2:True,3:True,4:True}
+    normal_cost = []
 
     for i in xrange(len(test_set_y)):
 	
-	if not idx==(len(test_set_y)-1):
-		cost = test_da_real(idx)
-		print cost,test_set_y[idx]		
+	#if not idx==(len(test_set_y)-1):
+	cost = test_da_real(idx)
+	#	print cost,test_set_y[idx]		
         #if not test_set_y[idx] ==0 and anom[int(test_set_y[idx])]:
         #	plt.figure(idx)
 		#print cost
@@ -448,19 +449,20 @@ def test_dA(learning_rate=0.3, training_epochs=100,hidden_units=75,
         #        plt.plot(cost[1][0],'b')
         #        plt.savefig('fig_%d_recon.png'%(test_set_y[idx]))
         #        anom[int(test_set_y[idx])] = False
-	#if cost>0.2 and not test_set_y[idx]==0:
-	#	positive_prediction+=1
-	#if cost>0.2 and test_set_y[idx]==0:
-	#	true_negative+=1
-	#if cost<0.2 and test_set_y[idx]==0:
-	#	positive_prediction+=1
-	#if cost<0.2 and not test_set_y[idx]==0:
-	#	false_positive+=1
+	if cost>0.15 and not test_set_y[idx]==0:
+		positive_prediction+=1
+	if cost>0.15 and test_set_y[idx]==0:
+		true_negative+=1
+	if cost<0.15 and test_set_y[idx]==0:
+		positive_prediction+=1
+	if cost<0.15 and not test_set_y[idx]==0:
+		false_positive+=1
 	#
-        #if test_set_y[idx]==1:
-        #    cost = test_da_real(idx)
-            #print ("\n\ncost of V beat %f\n\n"%(numpy.mean(cost)))
-         #   print ("\n\nV beat\n\n")
+        if test_set_y[idx]==0:
+           # cost = test_da_real(idx)
+            print ("\n\ncost of N beat %f\n\n"%(cost))
+            print ("\n\nV beat\n\n")
+	    normal_cost.append(cost)
 	  #  print cost
 	    #cost_high =  [cost[0][i] for i in cost[0].argsort()[-30:][::-1]]
             #cost_low = [cost[0][i] for i in cost[0].argsort()[:30][::-1]]
@@ -523,9 +525,14 @@ def test_dA(learning_rate=0.3, training_epochs=100,hidden_units=75,
     print false_positive
    
     file = open('results/da_results.txt','a')
-    file.write('Corruption %f | epochs %d | hidden %d | accuracy %f | true negative %d | false positive %d | positive prediction %d'%(corruption,training_epochs, hidden_units, ((positive_prediction*1.00)/idx) , true_negative, false_positive, positive_prediction))
+    file.write('Corruption %f | epochs %d | hidden %d | accuracy %f | true negative %d | false positive %d | positive prediction %d | mean_thresh %f '%(corruption,training_epochs, hidden_units, ((positive_prediction*1.00)/idx) , true_negative, false_positive, positive_prediction,numpy.mean(normal_cost)))
     file.write('\n\n')
     file.close()
+     
+    file = open('results/normal_cost.p','w+')
+    cp.dump(normal_cost,file)
+    file.close()
+	
 
 
 if __name__ == '__main__':
