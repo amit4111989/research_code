@@ -119,8 +119,10 @@ def extract_labels(filename,job, beat_class=None, no_of_beats=None):
             local_rr = 10.00/avg_interval
             # get beat class 0 , 1 , 2 , 3 , 4 depending on label
             beat = get_beat_class(arr[2])
-            if len(arr==7):
-               rhythm = arr[6][1:]
+            if len(arr)==7:
+               rythm = arr[6][1:]
+	    else:
+		rythm = None
             # extract particular beats if job==1
             if job==1:
                if len(output)>=int(no_of_beats):
@@ -145,10 +147,11 @@ def extract_labels(filename,job, beat_class=None, no_of_beats=None):
             if job==4:
                if len(output)>=int(no_of_beats):
                   break
-               elif rhythm==beat_class:
+               elif rythm==beat_class:
                   time = arr[0].split(':')
                   if int(time[0])>=5:
                         output.append([int(arr[1])])
+			print output
 
    return output
 
@@ -180,8 +183,8 @@ def extract_features(ecg,beat_index,rhythm=False):
 
 
    if rhythm:
-      for i in xrange(360*5*60):
-         index = (360*5*60)-i
+      for i in xrange(108000):
+         index = (108000)-i
          output.append(ecg[beat_index-index])
    else:
       #99 samples before r-peak
@@ -194,7 +197,7 @@ def extract_features(ecg,beat_index,rhythm=False):
          if not (beat_index+i) == len(ecg):
             output.append(ecg[beat_index+i])
          else:
-         return False
+         	return False
 
    return output
 
@@ -243,7 +246,10 @@ if __name__ == '__main__':
    for sample in xrange(len(ecg)):
       for peaks in label:
          if sample==peaks[0]:
-            features = extract_features(ecg,sample)
+	    if job==4:
+            	features = extract_features(ecg,sample,rhythm=True)
+	    else:
+		features = extract_features(ecg,sample)
             if features and not job==4:
                features.append(peaks[2])
                features.append(peaks[3])
@@ -259,7 +265,7 @@ if __name__ == '__main__':
    # write samples to a file
    #
    print '...Writing Data...'
-   if job==1:
+   if job==1 or job==4:
       outfile = open('training_data/'+filename+'_'+beat_class+'.csv', 'w+')
    elif job==2:
       outfile = open('training_data/'+filename+'_train'+'.csv', 'w+')
