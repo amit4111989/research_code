@@ -1,6 +1,6 @@
 import cPickle as cp 
 
-file = open('trainining_set/train_set.p','r')
+file = open('training_data/train_set.p','r')
 pay = cp.load(file)
 file.close()
 
@@ -16,6 +16,6 @@ for i in xrange(50):
 		end = (i+1)*2160
 		segments.append(pay[0][0][start:end])
 
-file = open('training_set/segments_200_N.p','w+')
+file = open('training_data/segments_200.p','w+')
 cp.dump(segments,file)
 file.close()
