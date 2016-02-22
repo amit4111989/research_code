@@ -7,7 +7,7 @@ file.close()
 
 
 
-labels = ['-%ds'%(i) for i in xrange(300,0,-5) ]
+labels = ['-%ds'%(i) for i in xrange(300,0,-6) ]
 
 rr = [i[0] for i in pay]
 det = [i[1] for i in pay]
@@ -31,6 +31,6 @@ plt.plot(ventr,label="VENTR")
 plt.plot(lam,label="LAM")
 plt.plot(mvert,label="MVERT")
 plt.plot(rt,label="RT")
-plt.legend(bbox_to_anchor=(0,0,1.,1),loc=4, borderaxespad=0.)
+plt.legend(bbox_to_anchor=(0,0,1.,1),loc=3, borderaxespad=0.)
 plt.tight_layout()
 plt.savefig('rqa_vt.png')
