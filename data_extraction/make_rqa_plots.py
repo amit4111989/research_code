@@ -7,7 +7,7 @@ file.close()
 
 
 
-labels = ['-%ds'%(i) for i in xrange(300,0,-5) ]
+labels = ['-%ds'%(i) for i in xrange(300,0,-10) ]
 
 rr = [i[0] for i in pay]
 det = [i[1] for i in pay]
@@ -19,8 +19,8 @@ lam = [i[6] for i in pay]
 mvert = [i[8]/1000.00 for i in pay]
 rt = [i[9]/100.00 for i in pay]
 
-plt.figure(figsize=(4,4))
-plt.xticks([i for i in xrange(51)][1:],labels,rotation='vertical')
+plt.figure(figsize=(12,6))
+plt.xticks([i for i in xrange(26)][1:],labels,rotation='vertical')
 plt.margins(0.05)
 plt.plot(rr,label="RR")
 plt.plot(det,label="DET")
