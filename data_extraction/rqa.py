@@ -1,7 +1,7 @@
 from pyunicorn.timeseries.recurrence_plot import RecurrencePlot
 import cPickle as cp 
 
-file = open('training_data/segments.p','r')
+file = open('training_data/segments_200.p','r')
 pay = cp.load(file)
 file.close()
 
