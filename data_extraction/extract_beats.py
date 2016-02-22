@@ -149,7 +149,7 @@ def extract_labels(filename,job, beat_class=None, no_of_beats=None):
                   break
                elif rythm==beat_class:
                   time = arr[0].split(':')
-                  if int(time[0])>=5:
+                  if int(time[0])>5:
                         output.append([int(arr[1])])
 			print output
 
