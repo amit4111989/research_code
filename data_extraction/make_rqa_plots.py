@@ -19,8 +19,8 @@ lam = [i[6] for i in pay]
 mvert = [i[8]/1000.00 for i in pay]
 rt = [i[9]/100.00 for i in pay]
 
-plt.figure(figsize=(12,6))
-plt.xticks([i for i in xrange(26)][1:],labels,rotation='vertical')
+plt.figure(0)
+plt.xticks([i for i in xrange(51)][1:],labels,rotation='vertical')
 plt.margins(0.05)
 plt.plot(rr,label="RR")
 plt.plot(det,label="DET")
@@ -32,5 +32,5 @@ plt.plot(lam,label="LAM")
 plt.plot(mvert,label="MVERT")
 plt.plot(rt,label="RT")
 plt.legend(bbox_to_anchor=(-1,0,1.,1),loc=2,mode='expand', borderaxespad=0.)
-
+plt.tight_layout()
 plt.savefig('rqa_vt.png')
