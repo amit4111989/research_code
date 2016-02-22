@@ -21,7 +21,7 @@ rt = [i[9]/100.00 for i in pay]
 
 plt.figure(0)
 plt.xticks([i for i in xrange(51)][1:],labels,rotation='vertical')
-plt.margins(0.1)
+plt.margins(0.4)
 plt.plot(rr,label="RR")
 plt.plot(det,label="DET")
 plt.plot(avgdl,label="AVGDL")
@@ -31,6 +31,6 @@ plt.plot(ventr,label="VENTR")
 plt.plot(lam,label="LAM")
 plt.plot(mvert,label="MVERT")
 plt.plot(rt,label="RT")
-plt.legend(bbox_to_anchor=(1,0,1,1),loc=2, borderaxespad=0.)
+plt.legend(bbox_to_anchor=(1,0,3,1),loc=2, borderaxespad=0.)
 
 plt.savefig('rqa_vt.png')
