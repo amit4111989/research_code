@@ -23,6 +23,8 @@
 #                 python extract_beats.py 102 2
 #                 (to extract last 25 min data)
 #                 python extract_beats.py 102 3
+#                 (VT extraction with 6 sec window segments 5 min before the episode)
+#                 python extract_beats.py 102 4 VT 1
 # Dataset URL :   https://www.physionet.org/physiobank/database/mitdb/
 # Date :          23rd Nov 2015
 #####
@@ -117,6 +119,8 @@ def extract_labels(filename,job, beat_class=None, no_of_beats=None):
             local_rr = 10.00/avg_interval
             # get beat class 0 , 1 , 2 , 3 , 4 depending on label
             beat = get_beat_class(arr[2])
+            if len(arr==7):
+               rhythm = arr[6][1:]
             # extract particular beats if job==1
             if job==1:
                if len(output)>=int(no_of_beats):
@@ -137,6 +141,14 @@ def extract_labels(filename,job, beat_class=None, no_of_beats=None):
                time = arr[0].split(':')
                if int(time[0])>=5:
                      output.append([int(arr[1]),beat,pre_rr,post_rr,avg_rr,local_rr])
+            # extract 
+            if job==4:
+               if len(output)>=int(no_of_beats):
+                  break
+               elif rhythm==beat_class:
+                  time = arr[0].split(':')
+                  if int(time[0])>=5:
+                        output.append([int(arr[1])])
 
    return output
 
@@ -163,19 +175,25 @@ def get_beat_class(beat):
 
    return output
 
-def extract_features(ecg,beat_index):
+def extract_features(ecg,beat_index,rhythm=False):
    output = []
 
-   #99 samples before r-peak
-   for i in xrange(99):
-      index = 99-i
-      output.append(ecg[beat_index-index])
 
-   #200 samples after rpeak
-   for i in xrange(101):
-      if not (beat_index+i) == len(ecg):
-         output.append(ecg[beat_index+i])
-      else:
+   if rhythm:
+      for i in xrange(360*5*60):
+         index = (360*5*60)-i
+         output.append(ecg[beat_index-index])
+   else:
+      #99 samples before r-peak
+      for i in xrange(99):
+         index = 99-i
+         output.append(ecg[beat_index-index])
+
+      #200 samples after rpeak
+      for i in xrange(101):
+         if not (beat_index+i) == len(ecg):
+            output.append(ecg[beat_index+i])
+         else:
          return False
 
    return output
@@ -184,7 +202,7 @@ if __name__ == '__main__':
 
    filename = sys.argv[1]
    job = int(sys.argv[2])
-   if job==1:
+   if job==1 or job==4:
       beat_class = sys.argv[3]
       no_of_samples = sys.argv[4]
 
@@ -211,7 +229,7 @@ if __name__ == '__main__':
 
    #extract r-peaks and labels from annotation file for desired beats
 
-   if job==1:
+   if job==1 or job==4:
       label = extract_labels(filename,job, beat_class, no_of_samples)
       print '...extracting complete'
    else:
@@ -226,12 +244,14 @@ if __name__ == '__main__':
       for peaks in label:
          if sample==peaks[0]:
             features = extract_features(ecg,sample)
-            if features:
+            if features and not job==4:
                features.append(peaks[2])
                features.append(peaks[3])
                features.append(peaks[4])
                features.append(peaks[5])
                features.append(peaks[1])
+               samples.append(features)
+            elif features and job==4:
                samples.append(features)
             else:
                print 'rpeak at beat', sample, 'skipped'
