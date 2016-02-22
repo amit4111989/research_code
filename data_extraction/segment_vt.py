@@ -5,7 +5,6 @@ pay = cp.load(file)
 file.close()
 
 segments = []
-
 for i in xrange(50):
 	if i==49:
 		start = i*2160
@@ -19,3 +18,4 @@ for i in xrange(50):
 file = open('training_data/segments_200.p','w+')
 cp.dump(segments,file)
 file.close()
+
